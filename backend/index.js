@@ -5,29 +5,38 @@ const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({ origin: 'http://localhost:3000' })); // Allow requests from React frontend
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.post('/calculate', (req, res) => {
-  const dataCenters = req.body;
+  try {
+    const dataCenters = req.body;
 
-  const calculatedValues = dataCenters.map((center) => {
-    const {
-      nosOfUtilityServers,
-      nosOfAutomationClusterServers,
-      nosOfRanMgmtClusterServers,
-      nosOfCuClusterServers,
-    } = center;
+    if (!Array.isArray(dataCenters)) {
+      return res.status(400).json({ error: 'Invalid input, expected an array' });
+    }
 
-    const totalNosOfServers =
-      parseInt(nosOfUtilityServers) +
-      parseInt(nosOfAutomationClusterServers) +
-      parseInt(nosOfRanMgmtClusterServers) +
-      parseInt(nosOfCuClusterServers);
+    const calculatedValues = dataCenters.map((center) => {
+      const {
+        nosOfUtilityServers,
+        nosOfAutomationClusterServers,
+        nosOfRanMgmtClusterServers,
+        nosOfCuClusterServers,
+      } = center;
 
-    return { ...center, totalNosOfServers };
-  });
+      const totalNosOfServers =
+        parseInt(nosOfUtilityServers) +
+        parseInt(nosOfAutomationClusterServers) +
+        parseInt(nosOfRanMgmtClusterServers) +
+        parseInt(nosOfCuClusterServers);
 
-  res.json(calculatedValues);
+      return { ...center, totalNosOfServers };
+    });
+
+    res.json(calculatedValues);
+  } catch (error) {
+    console.error('Error calculating values:', error);
+    res.status(500).send('Server error');
+  }
 });
 
 const PORT = process.env.PORT || 5000;
