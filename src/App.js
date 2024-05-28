@@ -43,25 +43,25 @@ const App = () => {
     });
   };
 
-  const handleChange = (index, e) => {
+  const handleChange = async (index, e) => {
     const { name, value } = e.target;
     const newValues = [...inputValues];
     newValues[index][name] = value;
     setInputValues(newValues);
 
     if (name === 'nosOfNodes' || name === 'automationCluster') {
-      fetchCalculatedValues(newValues);
+      await fetchCalculatedValues(newValues);
     }
   };
 
-  const fetchCalculatedValues = async () => {
+  const fetchCalculatedValues = async (values) => {
     try {
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(inputValues),
+        body: JSON.stringify(values),
       });
 
       if (!response.ok) {
@@ -76,8 +76,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchCalculatedValues();
-  }, [inputValues]);
+    fetchCalculatedValues(inputValues);
+  }, [numDataCenters]);
 
   return (
     <div className="App">
@@ -100,7 +100,26 @@ const App = () => {
               <td>{param}</td>
               {inputValues.map((values, index) => (
                 <td key={index}>
-                  <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  {param === 'technology' ? (
+                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                      <option value="4G">4G</option>
+                      <option value="5GSA">5GSA</option>
+                      <option value="5GNSA">5GNSA</option>
+                    </select>
+                  ) : param === 'platformType' ? (
+                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                      <option value="RHOCP">RHOCP</option>
+                      <option value="MWP">MWP</option>
+                      <option value="VMWARE">VMWARE</option>
+                    </select>
+                  ) : param === 'automationCluster' ? (
+                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      </select>
+                  ) : (
+                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  )}
                 </td>
               ))}
             </tr>
