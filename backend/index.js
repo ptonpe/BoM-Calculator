@@ -1,4 +1,3 @@
-// backend/index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -17,19 +16,38 @@ app.post('/calculate', (req, res) => {
 
     const calculatedValues = dataCenters.map((center) => {
       const {
+        technology,
+        platformType,
+        automationCluster,
+        nosOfNodes,
+      } = center;
+
+      // Define the formula or logic for calculating the other parameters
+      const nosOfUtilityServers = automationCluster == 0 ? 0 : 1;
+      
+      let nosOfAutomationClusterServers = 0;
+      if (automationCluster == 1) {
+        if (nosOfNodes < 99) {
+            nosOfAutomationClusterServers = 1;
+        } else if (nosOfNodes > 99 & nosOfNodes < 3500) {
+            nosOfAutomationClusterServers = 3;
+        }
+      }
+      
+      const nosOfRanMgmtClusterServers = Math.ceil(nosOfNodes / 20); // Example logic
+      const nosOfCuClusterServers = Math.ceil(nosOfNodes / 50); // Example logic
+      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
+      const nosOfRacks = Math.ceil(totalNosOfServers / 13); 
+
+      return {
+        ...center,
         nosOfUtilityServers,
         nosOfAutomationClusterServers,
         nosOfRanMgmtClusterServers,
         nosOfCuClusterServers,
-      } = center;
-
-      const totalNosOfServers =
-        parseInt(nosOfUtilityServers) +
-        parseInt(nosOfAutomationClusterServers) +
-        parseInt(nosOfRanMgmtClusterServers) +
-        parseInt(nosOfCuClusterServers);
-
-      return { ...center, totalNosOfServers };
+        totalNosOfServers,
+        nosOfRacks,
+      };
     });
 
     res.json(calculatedValues);

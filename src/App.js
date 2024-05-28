@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
@@ -49,18 +48,31 @@ const App = () => {
     const newValues = [...inputValues];
     newValues[index][name] = value;
     setInputValues(newValues);
+
+    if (name === 'nosOfNodes' || name === 'automationCluster') {
+      fetchCalculatedValues(newValues);
+    }
   };
 
   const fetchCalculatedValues = async () => {
-    const response = await fetch('http://localhost:5000/calculate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputValues),
-    });
-    const data = await response.json();
-    setInputValues(data);
+    try {
+      const response = await fetch('http://localhost:5000/calculate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputValues),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setInputValues(data);
+    } catch (error) {
+      console.error('Failed to fetch calculated values:', error);
+    }
   };
 
   useEffect(() => {
@@ -83,16 +95,22 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(inputValues[0]).map((param, paramIndex) => (
+          {['technology', 'platformType', 'automationCluster', 'nosOfNodes'].map((param, paramIndex) => (
             <tr key={paramIndex}>
               <td>{param}</td>
               {inputValues.map((values, index) => (
                 <td key={index}>
-                  {param === 'totalNosOfServers' ? (
-                    <input name={param} value={values[param]} readOnly />
-                  ) : (
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  )}
+                  <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                </td>
+              ))}
+            </tr>
+          ))}
+          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes'].includes(param)).map((param, paramIndex) => (
+            <tr key={paramIndex}>
+              <td>{param}</td>
+              {inputValues.map((values, index) => (
+                <td key={index}>
+                  <input name={param} value={values[param]} readOnly />
                 </td>
               ))}
             </tr>
