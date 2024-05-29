@@ -80,7 +80,7 @@ app.post('/calculate', (req, res) => {
 
       const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
       const nosOfRacks = Math.ceil(totalNosOfServers / 13);
-
+      //changes
       return {
         ...center,
         nosOfUtilityServers,
