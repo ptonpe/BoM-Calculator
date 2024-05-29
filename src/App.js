@@ -16,6 +16,15 @@ const App = () => {
       nosOfRanMgmtClusterServers: 4,
       nosOfCuClusterServers: 0,
       nosOfRacks: 0,
+      vCU: 0,
+      vDU: 0,
+      RUs: 0,
+      totalCNFs: 0,
+      vDU2: 0,
+      vCUCPUP: 0,
+      PTP: 0,
+      totalNFs: 0,
+      XA: 0,
     },
   ]);
 
@@ -37,6 +46,15 @@ const App = () => {
           nosOfRanMgmtClusterServers: 4,
           nosOfCuClusterServers: 0,
           nosOfRacks: 1,
+          vCU: 0,
+          vDU: 0,
+          RUs: 0,
+          totalCNFs: 0,
+          vDU2: 0,
+          vCUCPUP: 0,
+          PTP: 0,
+          totalNFs: 0,
+          XA: 0,
         });
       }
       return newValues.slice(0, num);
@@ -49,7 +67,8 @@ const App = () => {
     newValues[index][name] = value;
     setInputValues(newValues);
 
-    if (name === 'nosOfNodes' || name === 'automationCluster') {
+    if (name === 'nosOfNodes' || name === 'automationCluster' || name === 'totalNosOfServers' || name === 'XA'
+           || name === 'vCU' || name === 'vDU' || name === 'RUs' || name === 'vDU2' || name === 'vCUCPUP' || name === 'PTP') {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -116,7 +135,7 @@ const App = () => {
                     <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
                       <option value="0">0</option>
                       <option value="1">1</option>
-                      </select>
+                    </select>
                   ) : (
                     <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
                   )}
@@ -124,7 +143,7 @@ const App = () => {
               ))}
             </tr>
           ))}
-          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes'].includes(param)).map((param, paramIndex) => (
+          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs'].includes(param)).map((param, paramIndex) => (
             <tr key={paramIndex}>
               <td>{param}</td>
               {inputValues.map((values, index) => (
@@ -136,8 +155,76 @@ const App = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <h3>nCMS Dimensioning</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameters</th>
+              {inputValues.map((_, index) => (
+                <th key={index}>Data Center {index + 1}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {['vCU', 'vDU', 'RUs'].map((param, paramIndex) => (
+              <tr key={paramIndex}>
+                <td>{param}</td>
+                {inputValues.map((values, index) => (
+                  <td key={index}>
+                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            <tr>
+              <td>totalCNFs</td>
+              {inputValues.map((values, index) => (
+                <td key={index}>
+                  <input name="totalCNFs" value={values.totalCNFs} readOnly />
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>MTCIL Dimensioning</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameters</th>
+              {inputValues.map((_, index) => (
+                <th key={index}>Data Center {index + 1}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {['vDU2', 'vCUCPUP', 'PTP', 'XA'].map((param, paramIndex) => (
+              <tr key={paramIndex}>
+                <td>{param}</td>
+                {inputValues.map((values, index) => (
+                  <td key={index}>
+                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            <tr>
+              <td>totalNFs</td>
+              {inputValues.map((values, index) => (
+                <td key={index}>
+                  <input name="totalNFs" value={values.totalNFs} readOnly />
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
+
+
 
 export default App;
