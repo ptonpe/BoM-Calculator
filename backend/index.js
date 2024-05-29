@@ -23,13 +23,15 @@ app.post('/calculate', (req, res) => {
       } = center;
 
       // Define the formula or logic for calculating the other parameters
-      const nosOfUtilityServers = automationCluster == 0 ? 0 : 1;
+      const nosOfUtilityServers = nosOfNodes == 0 ? 0 : 1;
       
       let nosOfAutomationClusterServers = 0;
       if (automationCluster == 1) {
-        if (nosOfNodes < 99) {
+        if (nosOfNodes === 0) 
+            nosOfAutomationClusterServers = 0;
+        else if (nosOfNodes < 100) {
             nosOfAutomationClusterServers = 1;
-        } else if (nosOfNodes > 99 & nosOfNodes < 3500) {
+        } else if (nosOfNodes >= 100) {
             nosOfAutomationClusterServers = 3;
         }
       }
@@ -37,7 +39,18 @@ app.post('/calculate', (req, res) => {
       const nosOfRanMgmtClusterServers = Math.ceil(nosOfNodes / 20); // Example logic
       const nosOfCuClusterServers = Math.ceil(nosOfNodes / 50); // Example logic
       const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
-      const nosOfRacks = Math.ceil(totalNosOfServers / 13); 
+      let nosOfRacks = 0;
+      if (nosOfNodes == 0) {
+        nosOfRacks = 0;
+      } else if (totalNosOfServers <= 15) {
+        nosOfRacks = 1;
+      } else if (totalNosOfServers <= 30) {
+        nosOfRacks = 2;
+      } else if (totalNosOfServers <= 45) {
+        nosOfRacks = 3;
+      } else {
+        nosOfRacks = 4;
+      }
 
       return {
         ...center,

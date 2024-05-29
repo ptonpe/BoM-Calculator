@@ -11,11 +11,11 @@ const App = () => {
       nosOfNodes: 100,
       siteConfigType: 'Data Center 1',
       totalNosOfServers: 8,
-      nosOfUtilityServers: 1,
-      nosOfAutomationClusterServers: 3,
+      nosOfUtilityServers: 0,
+      nosOfAutomationClusterServers: 0,
       nosOfRanMgmtClusterServers: 4,
       nosOfCuClusterServers: 0,
-      nosOfRacks: 1,
+      nosOfRacks: 0,
     },
   ]);
 
