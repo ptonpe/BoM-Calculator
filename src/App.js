@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+
 const App = () => {
   const [numDataCenters, setNumDataCenters] = useState(1);
   const [inputValues, setInputValues] = useState([
@@ -27,6 +28,7 @@ const App = () => {
       XA: 0,
     },
   ]);
+
 
   const handleNumDataCentersChange = (e) => {
     const num = parseInt(e.target.value);
@@ -61,17 +63,20 @@ const App = () => {
     });
   };
 
+
   const handleChange = async (index, e) => {
     const { name, value } = e.target;
     const newValues = [...inputValues];
     newValues[index][name] = value;
     setInputValues(newValues);
 
+
     if (name === 'nosOfNodes' || name === 'automationCluster' || name === 'totalNosOfServers' || name === 'XA'
            || name === 'vCU' || name === 'vDU' || name === 'RUs' || name === 'vDU2' || name === 'vCUCPUP' || name === 'PTP') {
       await fetchCalculatedValues(newValues);
     }
   };
+
 
   const fetchCalculatedValues = async (values) => {
     try {
@@ -83,9 +88,11 @@ const App = () => {
         body: JSON.stringify(values),
       });
 
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
+
 
       const data = await response.json();
       setInputValues(data);
@@ -94,9 +101,11 @@ const App = () => {
     }
   };
 
+
   useEffect(() => {
     fetchCalculatedValues(inputValues);
   }, [numDataCenters]);
+
 
   return (
     <div className="App">
@@ -224,7 +233,5 @@ const App = () => {
     </div>
   );
 };
-
-
 
 export default App;
