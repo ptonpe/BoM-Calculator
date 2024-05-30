@@ -35,7 +35,7 @@ app.post('/calculate', (req, res) => {
 
 
       // Define the formula or logic for calculating the other parameters
-      const nosOfUtilityServers = nosOfNodes === 0 ? 0 : 1;
+      const nosOfUtilityServers = nosOfNodes == 0 ? 0 : 1;
       
       let nosOfAutomationClusterServers = 0;
       if (automationCluster == 1) {
