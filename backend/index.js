@@ -31,6 +31,10 @@ app.post('/calculate', (req, res) => {
         vCUCPUP,
         PTP,
         XA,
+        nosOfSites,
+        absMidhaulPer4G,
+        absMidhaulPer5GFDD,
+        absMidhaulPerTDD,
       } = center;
 
 
