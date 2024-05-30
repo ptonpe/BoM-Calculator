@@ -32,9 +32,14 @@ app.post('/calculate', (req, res) => {
         PTP,
         XA,
         nosOfSites,
+        pooling4G,
+        pooling5GFDD,
+        pooling5GTDD,
         absMidhaulPer4G,
         absMidhaulPer5GFDD,
         absMidhaulPerTDD,
+        plannedFDDCard,
+        plannedTDDCard
       } = center;
 
 
@@ -105,6 +110,27 @@ app.post('/calculate', (req, res) => {
         nosOfRacks = 4;
       }
 
+      const pooling4GDouble = (100 - pooling4G) / 100;
+      const absMidhaulThrough4G = nosOfSites * (absMidhaulPer4G * (pooling4GDouble));
+
+      const pooling5GFDDDouble = (100 - pooling5GFDD) / 100;
+      const absMidhaulThrough5GFDD = nosOfSites * (absMidhaulPer5GFDD * (pooling5GFDDDouble));
+
+      const pooling5GTDDDouble = (100 - pooling5GTDD) / 100;
+      const absMidhaulThrough5GTDD = nosOfSites * (absMidhaulPerTDD * (pooling5GTDDDouble));
+
+      const perInstance4G = Math.ceil(absMidhaulThrough4G / 6000);
+      const perInstance5GFDD = Math.ceil(absMidhaulThrough5GFDD / 12000);
+      const perInstance5GTDD = Math.ceil(absMidhaulThrough5GTDD / 12000);
+
+      const perInstance4GCard = Math.ceil(perInstance4G / 1);
+      const perInstance5GFDDCard = Math.ceil(perInstance5GFDD / plannedFDDCard);
+      const perInstance5GTDDCard = Math.ceil(perInstance5GTDD / plannedTDDCard);
+
+      const total4GServers = Math.ceil((perInstance4G + perInstance4GCard) / 10);
+      const total5GFDDServers = Math.ceil((perInstance5GFDD + perInstance5GFDDCard) / 5);
+      const total5GTDDServers = Math.ceil((perInstance5GTDD + perInstance5GTDDCard) / 5)
+
       return {
         ...center,
         nosOfUtilityServers,
@@ -118,7 +144,19 @@ app.post('/calculate', (req, res) => {
         nCMS,
         MTCIL,
         XA,
-        totalNosOfPCORE
+        totalNosOfPCORE,
+        absMidhaulThrough4G,
+        absMidhaulThrough5GFDD,
+        absMidhaulThrough5GTDD,
+        perInstance4G,
+        perInstance5GFDD,
+        perInstance5GTDD,
+        perInstance4GCard,
+        perInstance5GFDDCard,
+        perInstance5GTDDCard,
+        total4GServers,
+        total5GFDDServers,
+        total5GTDDServers
       };
     });
 

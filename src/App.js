@@ -32,6 +32,20 @@ const App = () => {
       pooling4G: 0,
       pooling5GFDD: 0,
       pooling5GTDD: 0,
+      absMidhaulThrough4G: 0,
+      absMidhaulThrough5GFDD: 0,
+      absMidhaulThrough5GTDD: 0,
+      perInstance4G: 0,
+      perInstance5GFDD: 0,
+      perInstance5GTDD: 0,
+      perInstance4GCard: 0,
+      perInstance5GFDDCard: 0,
+      perInstance5GTDDCard: 0,
+      plannedFDDCard: 0,
+      plannedTDDCard: 0,
+      total4GServers: 0,
+      total5GFDDServers: 0,
+      total5GTDDServers: 0
     },
   ]);
 
@@ -69,6 +83,20 @@ const App = () => {
           pooling4G: 0,
           pooling5GFDD: 0,
           pooling5GTDD: 0,
+          absMidhaulThrough4G: 0,
+          absMidhaulThrough5GFDD: 0,
+          absMidhaulThrough5GTDD: 0,
+          perInstance4G: 0,
+          perInstance5GFDD: 0,
+          perInstance5GTDD: 0,
+          perInstance4GCard: 0,
+          perInstance5GFDDCard: 0,
+          perInstance5GTDDCard: 0,
+          plannedFDDCard: 0,
+          plannedTDDCard: 0,
+          total4GServers: 0,
+          total5GFDDServers: 0,
+          total5GTDDServers: 0
         });
       }
       return newValues.slice(0, num);
@@ -83,7 +111,8 @@ const App = () => {
 
     console.log('Updated Input Values:', newValues);  // Debugging: Log updated values
 
-    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XA', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD'].includes(name)) {
+    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XA', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
+    'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -160,7 +189,8 @@ const App = () => {
               ))}
             </tr>
           ))}
-          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD'].includes(param)).map((param, paramIndex) => (
+          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
+          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'total5GTDDServers'].includes(param)).map((param, paramIndex) => (
             <tr key={paramIndex}>
               <td>{param}</td>
               {inputValues.map((values, index) => (
@@ -251,6 +281,27 @@ const App = () => {
           </thead>
           <tbody>
             {['nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD'].map((param, paramIndex) => (
+              <tr key={paramIndex}>
+                <td>{param}</td>
+                {inputValues.map((values, index) => (
+                  <td key={index}>
+                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {['absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD', 'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 
+            'perInstance5GTDDCard'].map((param, paramIndex) => (
+              <tr key={paramIndex}>
+                <td>{param}</td>
+                {inputValues.map((values, index) => (
+                  <td key={index}>
+                    <input name={param} value={values[param]} readOnly />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {['plannedFDDCard', 'plannedTDDCard'].map((param, paramIndex) => (
               <tr key={paramIndex}>
                 <td>{param}</td>
                 {inputValues.map((values, index) => (
