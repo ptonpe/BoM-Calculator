@@ -45,7 +45,16 @@ const App = () => {
       plannedTDDCard: 0,
       total4GServers: 0,
       total5GFDDServers: 0,
-      total5GTDDServers: 0
+      total5GTDDServers: 0,
+      isCU: 0,
+      masterPCORE: 0,
+      mtcilPCORE: 0,
+      totalvCUInstances: 0,
+      totalClusterPCORE: 0,
+      totalCUServers: 0,
+      isCURedundant: 0,
+      redundancyPercentage: 0,
+      totalCURedundancy: 0
     },
   ]);
 
@@ -96,7 +105,16 @@ const App = () => {
           plannedTDDCard: 0,
           total4GServers: 0,
           total5GFDDServers: 0,
-          total5GTDDServers: 0
+          total5GTDDServers: 0,
+          isCU: 0,
+          masterPCORE: 0,
+          mtcilPCORE: 0,
+          totalvCUInstances: 0,
+          totalClusterPCORE: 0,
+          totalCUServers: 0,
+          isCURedundant: 0,
+          redundancyPercentage: 0,
+          totalCURedundancy: 0
         });
       }
       return newValues.slice(0, num);
@@ -112,7 +130,7 @@ const App = () => {
     console.log('Updated Input Values:', newValues);  // Debugging: Log updated values
 
     if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XA', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
-    'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard'].includes(name)) {
+    'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -190,7 +208,7 @@ const App = () => {
             </tr>
           ))}
           {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
-          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'total5GTDDServers'].includes(param)).map((param, paramIndex) => (
+          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].includes(param)).map((param, paramIndex) => (
             <tr key={paramIndex}>
               <td>{param}</td>
               {inputValues.map((values, index) => (
@@ -285,7 +303,8 @@ const App = () => {
                 <td>{param}</td>
                 {inputValues.map((values, index) => (
                   <td key={index}>
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                    
+                      <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
                   </td>
                 ))}
               </tr>
@@ -308,6 +327,28 @@ const App = () => {
                   <td key={index}>
                     <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
                   </td>
+                ))}
+              </tr>
+            ))}
+            {['isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].map((param, paramIndex) => (
+              <tr key={paramIndex}>
+                <td>{param}</td>
+                {inputValues.map((values, index) => (
+                  <td key={index}>
+                  {param === 'isCU' ? (
+                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                    </select>
+                  ) : param === 'isCURedundant' ? (
+                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                    </select>
+                  ) : (
+                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                  )}
+                </td>
                 ))}
               </tr>
             ))}

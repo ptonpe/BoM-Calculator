@@ -39,7 +39,10 @@ app.post('/calculate', (req, res) => {
         absMidhaulPer5GFDD,
         absMidhaulPerTDD,
         plannedFDDCard,
-        plannedTDDCard
+        plannedTDDCard,
+        isCU,
+        isCURedundant,
+        redundancyPercentage,
       } = center;
 
 
@@ -57,7 +60,6 @@ app.post('/calculate', (req, res) => {
         }
       }
       
-      const nosOfCuClusterServers = Math.ceil(nosOfNodes / 50); // Example logic
       const totalCNFs = parseInt(vCU) + parseInt(vDU) + parseInt(RUs);
       const totalNFs = parseInt(vDU2) + parseInt(vCUCPUP) + parseInt(PTP);
 
@@ -96,20 +98,6 @@ app.post('/calculate', (req, res) => {
       const totalNosOfPCORE = nCMS + CRDL + components + sdaas + MTCIL + ODF + OSD + parseInt(XA);
       const nosOfRanMgmtClusterServers = Math.ceil(totalNosOfPCORE / 56);
 
-      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
-      let nosOfRacks = 0;
-      if (nosOfNodes == 0) {
-        nosOfRacks = 0;
-      } else if (totalNosOfServers <= 15) {
-        nosOfRacks = 1;
-      } else if (totalNosOfServers <= 30) {
-        nosOfRacks = 2;
-      } else if (totalNosOfServers <= 45) {
-        nosOfRacks = 3;
-      } else {
-        nosOfRacks = 4;
-      }
-
       const pooling4GDouble = (100 - pooling4G) / 100;
       const absMidhaulThrough4G = nosOfSites * (absMidhaulPer4G * (pooling4GDouble));
 
@@ -129,7 +117,46 @@ app.post('/calculate', (req, res) => {
 
       const total4GServers = Math.ceil((perInstance4G + perInstance4GCard) / 10);
       const total5GFDDServers = Math.ceil((perInstance5GFDD + perInstance5GFDDCard) / 5);
-      const total5GTDDServers = Math.ceil((perInstance5GTDD + perInstance5GTDDCard) / 5)
+      const total5GTDDServers = Math.ceil((perInstance5GTDD + perInstance5GTDDCard) / 5);
+
+      const nosOfCPInstances = perInstance4GCard + perInstance5GFDDCard + perInstance5GTDDCard;
+      const nosOfUPInstances = perInstance4G + perInstance5GFDD + perInstance5GTDD;
+      const totalvCUInstances = nosOfCPInstances + nosOfUPInstances;
+
+      const masterPCORE = isCU == 0 ? 0 : 36;
+      let mtcilRequirement = 0;
+      if (totalvCUInstances > 150)
+        mtcilRequirement = 64;
+      else if (totalvCUInstances > 100)
+        mtcilRequirement = 48;
+      else if (totalvCUInstances > 50)
+        mtcilRequirement = 32;
+      else 
+        mtcilRequirement = 16;
+
+      const mtcilPCORE = isCU == 0 ? 0 : mtcilRequirement;
+      const totalClusterPCORE = masterPCORE + mtcilPCORE;
+      const totalCUServers = Math.ceil(totalClusterPCORE / 56);
+
+      const redundant = isCURedundant == 0 ? 0 : (redundancyPercentage / 100);
+      const totalCURedundancy = Math.ceil(redundant * (total4GServers + total5GFDDServers + total5GTDDServers));
+
+      const nosOfCuClusterServers = total4GServers + total5GFDDServers + total5GTDDServers + totalCUServers + totalCURedundancy;
+
+      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
+      let nosOfRacks = 0;
+      if (nosOfNodes == 0) {
+        nosOfRacks = 0;
+      } else if (totalNosOfServers <= 15) {
+        nosOfRacks = 1;
+      } else if (totalNosOfServers <= 30) {
+        nosOfRacks = 2;
+      } else if (totalNosOfServers <= 45) {
+        nosOfRacks = 3;
+      } else {
+        nosOfRacks = 4;
+      }
+
 
       return {
         ...center,
@@ -156,7 +183,13 @@ app.post('/calculate', (req, res) => {
         perInstance5GTDDCard,
         total4GServers,
         total5GFDDServers,
-        total5GTDDServers
+        total5GTDDServers,
+        masterPCORE,
+        mtcilPCORE,
+        totalvCUInstances,
+        totalClusterPCORE,
+        totalCUServers,
+        totalCURedundancy,
       };
     });
 
