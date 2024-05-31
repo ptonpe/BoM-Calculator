@@ -24,7 +24,9 @@ const App = () => {
       vCUCPUP: 0,
       PTP: 0,
       totalNFs: 0,
-      XA: 0,
+      XApc: 0,
+      XAstor: 0,
+      additionalServers: 0,
       nosOfSites: 0,
       absMidhaulPer4G: 0,
       absMidhaulPer5GFDD: 0,
@@ -84,7 +86,9 @@ const App = () => {
           vCUCPUP: 0,
           PTP: 0,
           totalNFs: 0,
-          XA: 0,
+          XApc: 0,
+          XAstor: 0,
+          additionalServers: 0,
           nosOfSites: 0,
           absMidhaulPer4G: 0,
           absMidhaulPer5GFDD: 0,
@@ -129,7 +133,7 @@ const App = () => {
 
     console.log('Updated Input Values:', newValues);  // Debugging: Log updated values
 
-    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XA', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
+    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
     'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
@@ -208,7 +212,8 @@ const App = () => {
             </tr>
           ))}
           {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
-          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].includes(param)).map((param, paramIndex) => (
+          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
+          'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].includes(param)).map((param, paramIndex) => (
             <tr key={paramIndex}>
               <td>{param}</td>
               {inputValues.map((values, index) => (
@@ -265,7 +270,7 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            {['vDU2', 'vCUCPUP', 'PTP', 'XA'].map((param, paramIndex) => (
+            {['vDU2', 'vCUCPUP', 'PTP', 'XApc', 'XAstor'].map((param, paramIndex) => (
               <tr key={paramIndex}>
                 <td>{param}</td>
                 {inputValues.map((values, index) => (

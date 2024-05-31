@@ -30,7 +30,8 @@ app.post('/calculate', (req, res) => {
         vDU2,
         vCUCPUP,
         PTP,
-        XA,
+        XApc,
+        XAstor,
         nosOfSites,
         pooling4G,
         pooling5GFDD,
@@ -95,8 +96,12 @@ app.post('/calculate', (req, res) => {
       const ODF = 12;
       const OSD = 12;
       
-      const totalNosOfPCORE = nCMS + CRDL + components + sdaas + MTCIL + ODF + OSD + parseInt(XA);
-      const nosOfRanMgmtClusterServers = Math.ceil(totalNosOfPCORE / 56);
+      const totalNosOfPCORE = nCMS + CRDL + components + sdaas + MTCIL + ODF + OSD + parseInt(XApc);
+      const RANservers = Math.ceil(totalNosOfPCORE / 56);
+      const diskCapacity = RANservers * 1.7;
+      const deltaRequirement = XAstor - diskCapacity;
+      const additionalServers = Math.ceil(deltaRequirement > 0 ? deltaRequirement / 1.7 : 0);
+      const nosOfRanMgmtClusterServers = RANservers + additionalServers;
 
       const pooling4GDouble = (100 - pooling4G) / 100;
       const absMidhaulThrough4G = nosOfSites * (absMidhaulPer4G * (pooling4GDouble));
@@ -170,7 +175,7 @@ app.post('/calculate', (req, res) => {
         totalNFs,
         nCMS,
         MTCIL,
-        XA,
+        XApc,
         totalNosOfPCORE,
         absMidhaulThrough4G,
         absMidhaulThrough5GFDD,
@@ -190,6 +195,7 @@ app.post('/calculate', (req, res) => {
         totalClusterPCORE,
         totalCUServers,
         totalCURedundancy,
+        additionalServers
       };
     });
 
