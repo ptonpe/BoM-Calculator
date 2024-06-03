@@ -1,0 +1,32 @@
+.grey-box {
+    background-color: grey;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sideways-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+  }
+
+  .long-text-field {
+    width: 250px;
+  }
+
+  .short-text-field {
+    width: 60px;
+  }
+
+  .medium-text-field {
+    width: 100px
+  }
+
+  .category-spacing {
+    margin-top: 20px; /* Adjust this value to create more space between categories */
+  }

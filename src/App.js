@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import HardwareData from './HardwareData';
 
 const App = () => {
   const [numDataCenters, setNumDataCenters] = useState(1);
@@ -167,200 +169,210 @@ const App = () => {
   }, [numDataCenters]);
 
   return (
-    <div className="App">
-      <div>
-        <label>Number of Data Centers:</label>
-        <input type="number" value={numDataCenters} onChange={handleNumDataCentersChange} />
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={
+            <div>
+              <div>
+                <label>Number of Data Centers:</label>
+                <input type="number" value={numDataCenters} onChange={handleNumDataCentersChange} />
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameters</th>
+                    {inputValues.map((_, index) => (
+                      <th key={index}>Data Center {index + 1}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {['technology', 'platformType', 'automationCluster', 'nosOfNodes'].map((param, paramIndex) => (
+                    <tr key={paramIndex}>
+                      <td>{param}</td>
+                      {inputValues.map((values, index) => (
+                        <td key={index}>
+                          {param === 'technology' ? (
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <option value="4G">4G</option>
+                              <option value="5GSA">5GSA</option>
+                              <option value="5GNSA">5GNSA</option>
+                            </select>
+                          ) : param === 'platformType' ? (
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <option value="RHOCP">RHOCP</option>
+                              <option value="MWP">MWP</option>
+                              <option value="VMWARE">VMWARE</option>
+                            </select>
+                          ) : param === 'automationCluster' ? (
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                            </select>
+                          ) : (
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                  {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
+                  'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
+                  'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].includes(param)).map((param, paramIndex) => (
+                    <tr key={paramIndex}>
+                      <td>{param}</td>
+                      {inputValues.map((values, index) => (
+                        <td key={index}>
+                          <input name={param} value={values[param]} readOnly />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div>
+                <h3>nCMS Dimensioning</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameters</th>
+                      {inputValues.map((_, index) => (
+                        <th key={index}>Data Center {index + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {['vCU', 'vDU', 'RUs'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr>
+                      <td>totalCNFs</td>
+                      {inputValues.map((values, index) => (
+                        <td key={index}>
+                          <input name="totalCNFs" value={values.totalCNFs} readOnly />
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h3>MTCIL Dimensioning</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameters</th>
+                      {inputValues.map((_, index) => (
+                        <th key={index}>Data Center {index + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {['vDU2', 'vCUCPUP', 'PTP', 'XApc', 'XAstor'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr>
+                      <td>totalNFs</td>
+                      {inputValues.map((values, index) => (
+                        <td key={index}>
+                          <input name="totalNFs" value={values.totalNFs} readOnly />
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h3>CU vBOM</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameters</th>
+                      {inputValues.map((_, index) => (
+                        <th key={index}>Data Center {index + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {['nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            
+                              <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    {['absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD', 'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 
+                    'perInstance5GTDDCard'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} readOnly />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    {['plannedFDDCard', 'plannedTDDCard'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    {['isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{param}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                          {param === 'isCU' ? (
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                            </select>
+                          ) : param === 'isCURedundant' ? (
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                            </select>
+                          ) : (
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          )}
+                        </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <Link to="/hardware"><button>Go to Hardware Page</button></Link>
+            </div>
+          } />
+          <Route path="/hardware" element={<HardwareData inputValues={inputValues}/>} />
+        </Routes>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Parameters</th>
-            {inputValues.map((_, index) => (
-              <th key={index}>Data Center {index + 1}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {['technology', 'platformType', 'automationCluster', 'nosOfNodes'].map((param, paramIndex) => (
-            <tr key={paramIndex}>
-              <td>{param}</td>
-              {inputValues.map((values, index) => (
-                <td key={index}>
-                  {param === 'technology' ? (
-                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
-                      <option value="4G">4G</option>
-                      <option value="5GSA">5GSA</option>
-                      <option value="5GNSA">5GNSA</option>
-                    </select>
-                  ) : param === 'platformType' ? (
-                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
-                      <option value="RHOCP">RHOCP</option>
-                      <option value="MWP">MWP</option>
-                      <option value="VMWARE">VMWARE</option>
-                    </select>
-                  ) : param === 'automationCluster' ? (
-                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                    </select>
-                  ) : (
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
-          {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
-          'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
-          'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].includes(param)).map((param, paramIndex) => (
-            <tr key={paramIndex}>
-              <td>{param}</td>
-              {inputValues.map((values, index) => (
-                <td key={index}>
-                  <input name={param} value={values[param]} readOnly />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <h3>nCMS Dimensioning</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Parameters</th>
-              {inputValues.map((_, index) => (
-                <th key={index}>Data Center {index + 1}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {['vCU', 'vDU', 'RUs'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  </td>
-                ))}
-              </tr>
-            ))}
-            <tr>
-              <td>totalCNFs</td>
-              {inputValues.map((values, index) => (
-                <td key={index}>
-                  <input name="totalCNFs" value={values.totalCNFs} readOnly />
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h3>MTCIL Dimensioning</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Parameters</th>
-              {inputValues.map((_, index) => (
-                <th key={index}>Data Center {index + 1}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {['vDU2', 'vCUCPUP', 'PTP', 'XApc', 'XAstor'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  </td>
-                ))}
-              </tr>
-            ))}
-            <tr>
-              <td>totalNFs</td>
-              {inputValues.map((values, index) => (
-                <td key={index}>
-                  <input name="totalNFs" value={values.totalNFs} readOnly />
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h3>CU vBOM</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Parameters</th>
-              {inputValues.map((_, index) => (
-                <th key={index}>Data Center {index + 1}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {['nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                    
-                      <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  </td>
-                ))}
-              </tr>
-            ))}
-            {['absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD', 'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 
-            'perInstance5GTDDCard'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                    <input name={param} value={values[param]} readOnly />
-                  </td>
-                ))}
-              </tr>
-            ))}
-            {['plannedFDDCard', 'plannedTDDCard'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  </td>
-                ))}
-              </tr>
-            ))}
-            {['isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].map((param, paramIndex) => (
-              <tr key={paramIndex}>
-                <td>{param}</td>
-                {inputValues.map((values, index) => (
-                  <td key={index}>
-                  {param === 'isCU' ? (
-                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                    </select>
-                  ) : param === 'isCURedundant' ? (
-                    <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                    </select>
-                  ) : (
-                    <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
-                  )}
-                </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </Router>
   );
 };
 
