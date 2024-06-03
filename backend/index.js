@@ -73,8 +73,18 @@ app.post('/calculate', (req, res) => {
         MTCIL = 32;
       } else if (totalNFs >= 120 && totalNFs < 180) {
         MTCIL = 48;
-      } else if (totalNFs >= 180) {
+      } else if (totalNFs >= 180 && totalNFs < 240) {
         MTCIL = 64;
+      } else if (totalNFs >= 240 && totalNFs < 300) {
+        MTCIL = 80;
+      } else if (totalNFs >= 300 && totalNFs < 360) {
+        MTCIL = 96;
+      } else if (totalNFs >= 360 && totalNFs < 420) {
+        MTCIL = 112;
+      } else if (totalNFs >= 420 && totalNFs < 480) {
+        MTCIL = 128;
+      } else if (totalNFs >= 480) {
+        MTCIL = 144;
       }
 
 

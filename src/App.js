@@ -45,8 +45,8 @@ const App = () => {
       perInstance4GCard: 0,
       perInstance5GFDDCard: 0,
       perInstance5GTDDCard: 0,
-      plannedFDDCard: 0,
-      plannedTDDCard: 0,
+      plannedFDDCard: 1,
+      plannedTDDCard: 1,
       total4GServers: 0,
       total5GFDDServers: 0,
       total5GTDDServers: 0,
@@ -107,8 +107,8 @@ const App = () => {
           perInstance4GCard: 0,
           perInstance5GFDDCard: 0,
           perInstance5GTDDCard: 0,
-          plannedFDDCard: 0,
-          plannedTDDCard: 0,
+          plannedFDDCard: 1,
+          plannedTDDCard: 1,
           total4GServers: 0,
           total5GFDDServers: 0,
           total5GTDDServers: 0,
@@ -331,7 +331,7 @@ const App = () => {
                         ))}
                       </tr>
                     ))}
-                    {['plannedFDDCard', 'plannedTDDCard'].map((param, paramIndex) => (
+                    {['plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'total5GTDDServers'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{param}</td>
                         {inputValues.map((values, index) => (
