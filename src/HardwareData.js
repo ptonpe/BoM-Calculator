@@ -177,6 +177,33 @@ const HardwareData = ({ inputValues }) => {
     },
   ]);
 
+  const [itemDescriptions, setItemDescriptions] = useState({
+    // Define descriptions for each item type
+    'Dell R650': ["Description 1", "Description 2", "Description 3"],
+
+    'Dell R750/R740': {
+      'Automation Servers': ["Description 4", "Description 5", "Description 6"],
+      'RAN Management': ["Description 7", "Description 8", "Description 9"],
+      'CU Server': [''],
+    },
+    'Rack': [''],
+    'TOR Switch': [''],
+    'Management Switch': [''],
+    'Spine Switch': [''],
+    'SDN(CCF/BCF) Server': [''],
+    'Leaf to servers Breakout Cable 100G': [''],
+    'Leaf to Servers 100G SFP\'s': [''],
+    'Leaf to CCF/SDN Breakout Cable 40G': [''],
+    'Leaf to CCF/SDN 40G SFPs': [''],
+    'Leaf to Leaf Trunk cable': [''],
+    'Leaf to Management SFP 100G': [''],
+    'Leaf to Management Trunk Cable': [''],
+    'Management to servers Ethernet cable': [''],
+    'Management to CCF/SDN Ethernet cable': [''],
+    'Leaf to Spine SFPs 100G': [''],
+    'Leaf to Spine Trunk Cable': ['']
+      });
+
   useEffect(() => {
     setNumDataCenters(inputValues.length);
   }, [inputValues]);
