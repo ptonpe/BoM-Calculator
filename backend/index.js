@@ -127,8 +127,8 @@ app.post('/calculate', (req, res) => {
       const perInstance5GTDD = Math.ceil(absMidhaulThrough5GTDD / 12000);
 
       const perInstance4GCard = Math.ceil(perInstance4G / 1);
-      const perInstance5GFDDCard = Math.ceil(perInstance5GFDD / plannedFDDCard);
-      const perInstance5GTDDCard = Math.ceil(perInstance5GTDD / plannedTDDCard);
+      const perInstance5GFDDCard = plannedFDDCard == 0 ? 0 : Math.ceil(perInstance5GFDD / plannedFDDCard);
+      const perInstance5GTDDCard = plannedTDDCard == 0 ? 0 : Math.ceil(perInstance5GTDD / plannedTDDCard);
 
       const total4GServers = Math.ceil((perInstance4G + perInstance4GCard) / 10);
       const total5GFDDServers = Math.ceil((perInstance5GFDD + perInstance5GFDDCard) / 5);
