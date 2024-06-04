@@ -181,22 +181,13 @@ const HardwareData = ({ inputValues }) => {
     // Define descriptions for each item type
     'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
 
-    'Dell R750/R740': {
-      'Automation Servers': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
+    'Dell R750/R740': [
+      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
         "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
         "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
         "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC" ],
-
-      'RAN Management': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
-      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
-      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
-      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"],
-
-      'CU Server': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
-      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
-      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
-      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"],
-    },
+    
+      
     'Rack': ["HPE NFV/NON -NFV  42U Rack with 1P G2 Basic PDU  - International",
   "HPE OPEN STACK HP RACK &  US/JP AC POWER", "OPEN STACK HP RACK DC POWER"],
 
@@ -223,9 +214,9 @@ const HardwareData = ({ inputValues }) => {
     'Leaf to Servers 100G SFP\'s': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
     'Leaf to CCF/SDN Breakout Cable 40G': ["Cable: 40G multimode Fanout Cables MPO-3 meter Plenum Fiber Optic Cable, 40Gb MTP(MPO)/4LC Breakout, OM3"],
     'Leaf to CCF/SDN 40G SFPs': ["QSFP: Finisar FTL410QE2C 40GBase-SR4 QSFP+ Transceiver"],
-    'Leaf to Leaf SPFs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
+    'Leaf to Leaf SFPs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
 
-    'Leaf to Leaf Trunk cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+    'Leaf to Leaf Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
       "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
       "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
       "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
@@ -327,8 +318,9 @@ const HardwareData = ({ inputValues }) => {
                     onChange={(e) => handleChange(index, e)}
                   >
                     <option value="">Select Description</option>
-                    <option value="Description 1">Description 1</option>
-                    <option value="Description 2">Description 2</option>
+                    {(Array.isArray(itemDescriptions[hardware.itemType]) ? itemDescriptions[hardware.itemType] : []).map((description, descIndex) => (
+                      <option key={descIndex} value={description}>{description}</option>
+                    ))}
                   </select>
                 </td>
                 <td>
