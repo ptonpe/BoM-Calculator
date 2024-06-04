@@ -31,7 +31,7 @@ const HardwareData = ({ inputValues }) => {
     },
     {
       category: 'CU Server',
-      itemType: 'Server',
+      itemType: 'Dell R750/R740',
       itemDescription: '',
       skuNo: 'CU-101',
       qty: 1,
@@ -179,29 +179,81 @@ const HardwareData = ({ inputValues }) => {
 
   const [itemDescriptions, setItemDescriptions] = useState({
     // Define descriptions for each item type
-    'Dell R650': ["Description 1", "Description 2", "Description 3"],
+    'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
 
     'Dell R750/R740': {
-      'Automation Servers': ["Description 4", "Description 5", "Description 6"],
-      'RAN Management': ["Description 7", "Description 8", "Description 9"],
-      'CU Server': [''],
+      'Automation Servers': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
+        "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
+        "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
+        "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC" ],
+
+      'RAN Management': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
+      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"],
+
+      'CU Server': ["Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
+      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"],
     },
-    'Rack': [''],
-    'TOR Switch': [''],
-    'Management Switch': [''],
-    'Spine Switch': [''],
-    'SDN(CCF/BCF) Server': [''],
-    'Leaf to servers Breakout Cable 100G': [''],
-    'Leaf to Servers 100G SFP\'s': [''],
-    'Leaf to CCF/SDN Breakout Cable 40G': [''],
-    'Leaf to CCF/SDN 40G SFPs': [''],
-    'Leaf to Leaf Trunk cable': [''],
-    'Leaf to Management SFP 100G': [''],
-    'Leaf to Management Trunk Cable': [''],
-    'Management to servers Ethernet cable': [''],
-    'Management to CCF/SDN Ethernet cable': [''],
-    'Leaf to Spine SFPs 100G': [''],
-    'Leaf to Spine Trunk Cable': ['']
+    'Rack': ["HPE NFV/NON -NFV  42U Rack with 1P G2 Basic PDU  - International",
+  "HPE OPEN STACK HP RACK &  US/JP AC POWER", "OPEN STACK HP RACK DC POWER"],
+
+    'TOR Switch': ["STAND-ALONE NON STDN - TOR ARISTA 7050X3,  32X100GBE QSFP+ & 2XSFP+ SWITCH,  REAR TO FRONT AIR,  2XAC",
+        "STAND-ALONE NON STDN - ToR ARISTA 7050X3,  32x100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xDC",
+        "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
+        "S5232-F-ON DC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU",
+        "LEAF/SPINE/ToR ARISTA 7050X3,  32 x 100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xAC 2xC13-C14",
+        "LEAF/SPINE/ToR Arista 7050X3,  32x100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xDC"],
+
+    'Management Switch': ["MANAGEMENT SWITCH - ARISTA 7010T,  48x RJ45 (100/1000),  4 x SFP+ (1/10GbE) SWITCH,  REAR TO FRONT AIR",
+  "MANAGEMENT SWITCH - ARISTA 7010T,  48x RJ45 (100/1000),  4 x SFP+ (1/10GbE) SWITCH,  REAR TO FRONT AIR",
+  "CISCO NEXUS 92348GC-X – AC MANAGED 48 x 10/100/1000 + 4 x 1/10/25 GIGABIT",
+  "Cisco Nexus mgmt switch 92348GC-X   DC 48 x 10/100/1000 + 4 x 1/10/25 Gigabit SFP28 + 2 x 40/100 Gig"],
+
+    'Spine Switch': ["S5232-F-ON AC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
+  "S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU"],
+
+    'SDN(CCF/BCF) Server': ["Arista CCF Controller (aka BCF) – Dell 15G R450"],
+
+    'Leaf to servers Breakout Cable 100G': ["3M - 100G Multimode breakout  (OM4) 50/125 - 12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks.",
+  "5M  (15FT)- 100G Multimode breakout  (OM4) 50/125  12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks."],
+
+    'Leaf to Servers 100G SFP\'s': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
+    'Leaf to CCF/SDN Breakout Cable 40G': ["Cable: 40G multimode Fanout Cables MPO-3 meter Plenum Fiber Optic Cable, 40Gb MTP(MPO)/4LC Breakout, OM3"],
+    'Leaf to CCF/SDN 40G SFPs': ["QSFP: Finisar FTL410QE2C 40GBase-SR4 QSFP+ Transceiver"],
+    'Leaf to Leaf SPFs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
+
+    'Leaf to Leaf Trunk cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+      "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+      "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
+      "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
+      "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
+      "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+      "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"],
+
+    'Leaf to Management SFP 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
+
+    'Leaf to Management Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+    "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+    "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
+    "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
+    "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
+    "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+    "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"],
+
+    'Management to servers Ethernet cable': ["GGG-EEE-009 Generic CAT6 9 feet Ethernet cable RJ45"],
+    'Management to CCF/SDN Ethernet cable': ["GGG-EEE-009 Generic CAT6 9 feet Ethernet cable RJ45"],
+    'Leaf to Spine SFPs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF, "],
+    
+    'Leaf to Spine Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+    "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+    "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
+    "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
+    "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
+    "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+    "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"]
       });
 
   useEffect(() => {
