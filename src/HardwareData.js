@@ -7,27 +7,27 @@ const HardwareData = ({ inputValues }) => {
   const [hardwareDetails, setHardwareDetails] = useState([
     {
       category: 'Utility Server',
-      itemType: 'Server',
+      itemType: 'Dell R650',
       itemDescription: '',
       skuNo: 'US-123',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'Automation Servers',
-      itemType: 'Server',
+      itemType: 'Dell R750/R740',
       itemDescription: '',
       skuNo: 'AS-456',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'RAN Management',
-      itemType: 'Management System',
+      itemType: 'Dell R750/R740',
       itemDescription: '',
       skuNo: 'RM-789',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'CU Server',
@@ -35,7 +35,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'CU-101',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     // Fabric category with specified Item Types
     {
@@ -44,7 +44,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'FAB-112',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Rack',
     },
     {
       category: 'Fabric',
@@ -52,7 +52,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'FAB-113',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'Fabric',
@@ -60,7 +60,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'FAB-114',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Management',
     },
     {
       category: 'Fabric',
@@ -68,7 +68,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'FAB-115',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Spine',
     },
     {
       category: 'Fabric',
@@ -76,7 +76,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'FAB-116',
       qty: 2,
-      uom: 'pcs',
+      uom: 'SDN/CCF',
     },
     // DC Accessories category with specified Item Types
     {
@@ -85,7 +85,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-131',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'DC Accessories',
@@ -93,7 +93,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-132',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'DC Accessories',
@@ -101,7 +101,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-133',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'DC Accessories',
@@ -109,7 +109,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-134',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'DC Accessories',
@@ -117,7 +117,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-135',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'DC Accessories',
@@ -125,7 +125,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-136',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'DC Accessories',
@@ -133,7 +133,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-137',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'DC Accessories',
@@ -141,7 +141,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-138',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'DC Accessories',
@@ -149,7 +149,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-139',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Server',
     },
     {
       category: 'DC Accessories',
@@ -157,7 +157,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-140',
       qty: 4,
-      uom: 'pcs',
+      uom: 'CCF/SDN',
     },
     {
       category: 'DC Accessories',
@@ -165,7 +165,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-141',
       qty: 2,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
     {
       category: 'DC Accessories',
@@ -173,7 +173,7 @@ const HardwareData = ({ inputValues }) => {
       itemDescription: '',
       skuNo: 'DCA-142',
       qty: 1,
-      uom: 'pcs',
+      uom: 'Leaf',
     },
   ]);
 
