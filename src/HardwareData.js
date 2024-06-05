@@ -9,7 +9,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Utility Server',
       itemType: 'Dell R650',
       itemDescription: '',
-      skuNo: 'US-123',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -17,7 +17,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Automation Servers',
       itemType: 'Dell R750/R740',
       itemDescription: '',
-      skuNo: 'AS-456',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -25,7 +25,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'RAN Management',
       itemType: 'Dell R750/R740',
       itemDescription: '',
-      skuNo: 'RM-789',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -33,7 +33,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'CU Server',
       itemType: 'Dell R750/R740',
       itemDescription: '',
-      skuNo: 'CU-101',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -42,7 +42,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Fabric',
       itemType: 'Rack',
       itemDescription: '',
-      skuNo: 'FAB-112',
+      skuNo: '',
       qty: 1,
       uom: 'Rack',
     },
@@ -50,7 +50,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Fabric',
       itemType: 'TOR Switch',
       itemDescription: '',
-      skuNo: 'FAB-113',
+      skuNo: '',
       qty: 1,
       uom: 'Leaf',
     },
@@ -58,7 +58,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Fabric',
       itemType: 'Management Switch',
       itemDescription: '',
-      skuNo: 'FAB-114',
+      skuNo: '',
       qty: 2,
       uom: 'Management',
     },
@@ -66,7 +66,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Fabric',
       itemType: 'Spine Switch',
       itemDescription: '',
-      skuNo: 'FAB-115',
+      skuNo: '',
       qty: 2,
       uom: 'Spine',
     },
@@ -74,7 +74,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'Fabric',
       itemType: 'SDN(CCF/BCF) Server',
       itemDescription: '',
-      skuNo: 'FAB-116',
+      skuNo: '',
       qty: 2,
       uom: 'SDN/CCF',
     },
@@ -83,7 +83,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to servers Breakout Cable 100G',
       itemDescription: '',
-      skuNo: 'DCA-131',
+      skuNo: '',
       qty: 2,
       uom: 'Server',
     },
@@ -91,7 +91,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Servers 100G SFP\'s',
       itemDescription: '',
-      skuNo: 'DCA-132',
+      skuNo: '',
       qty: 2,
       uom: 'Server',
     },
@@ -99,7 +99,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to CCF/SDN Breakout Cable 40G',
       itemDescription: '',
-      skuNo: 'DCA-133',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -107,7 +107,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to CCF/SDN 40G SFPs',
       itemDescription: '',
-      skuNo: 'DCA-134',
+      skuNo: '',
       qty: 1,
       uom: 'Server',
     },
@@ -115,7 +115,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Leaf SFPs 100G',
       itemDescription: '',
-      skuNo: 'DCA-135',
+      skuNo: '',
       qty: 2,
       uom: 'Leaf',
     },
@@ -123,7 +123,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Leaf Trunk Cable',
       itemDescription: '',
-      skuNo: 'DCA-136',
+      skuNo: '',
       qty: 2,
       uom: 'Leaf',
     },
@@ -131,7 +131,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Management SFP 100G',
       itemDescription: '',
-      skuNo: 'DCA-137',
+      skuNo: '',
       qty: 2,
       uom: 'Leaf',
     },
@@ -139,7 +139,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Management Trunk Cable',
       itemDescription: '',
-      skuNo: 'DCA-138',
+      skuNo: '',
       qty: 1,
       uom: 'Leaf',
     },
@@ -147,7 +147,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Management to servers Ethernet cable',
       itemDescription: '',
-      skuNo: 'DCA-139',
+      skuNo: '',
       qty: 2,
       uom: 'Server',
     },
@@ -155,7 +155,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Management to CCF/SDN Ethernet cable',
       itemDescription: '',
-      skuNo: 'DCA-140',
+      skuNo: '',
       qty: 4,
       uom: 'CCF/SDN',
     },
@@ -163,7 +163,7 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Spine SFPs 100G',
       itemDescription: '',
-      skuNo: 'DCA-141',
+      skuNo: '',
       qty: 2,
       uom: 'Leaf',
     },
@@ -171,90 +171,117 @@ const HardwareData = ({ inputValues }) => {
       category: 'DC Accessories',
       itemType: 'Leaf to Spine Trunk Cable',
       itemDescription: '',
-      skuNo: 'DCA-142',
+      skuNo: '',
       qty: 1,
       uom: 'Leaf',
     },
   ]);
 
-  const [itemDescriptions, setItemDescriptions] = useState({
-    // Define descriptions for each item type
-    'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
+  const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
 
+  const itemDescriptions = {
+    'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
     'Dell R750/R740': [
       "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
-        "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
-        "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
-        "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC" ],
-    
-      
-    'Rack': ["HPE NFV/NON -NFV  42U Rack with 1P G2 Basic PDU  - International",
-  "HPE OPEN STACK HP RACK &  US/JP AC POWER", "OPEN STACK HP RACK DC POWER"],
-
-    'TOR Switch': ["STAND-ALONE NON STDN - TOR ARISTA 7050X3,  32X100GBE QSFP+ & 2XSFP+ SWITCH,  REAR TO FRONT AIR,  2XAC",
-        "STAND-ALONE NON STDN - ToR ARISTA 7050X3,  32x100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xDC",
-        "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
-        "S5232-F-ON DC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU",
-        "LEAF/SPINE/ToR ARISTA 7050X3,  32 x 100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xAC 2xC13-C14",
-        "LEAF/SPINE/ToR Arista 7050X3,  32x100GbE QSFP+ & 2xSFP+ SWITCH,  REAR TO FRONT AIR,  2xDC"],
-
-    'Management Switch': ["MANAGEMENT SWITCH - ARISTA 7010T,  48x RJ45 (100/1000),  4 x SFP+ (1/10GbE) SWITCH,  REAR TO FRONT AIR",
-  "MANAGEMENT SWITCH - ARISTA 7010T,  48x RJ45 (100/1000),  4 x SFP+ (1/10GbE) SWITCH,  REAR TO FRONT AIR",
-  "CISCO NEXUS 92348GC-X – AC MANAGED 48 x 10/100/1000 + 4 x 1/10/25 GIGABIT",
-  "Cisco Nexus mgmt switch 92348GC-X   DC 48 x 10/100/1000 + 4 x 1/10/25 Gigabit SFP28 + 2 x 40/100 Gig"],
-
-    'Spine Switch': ["S5232-F-ON AC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
-  "S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU"],
-
+      "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"
+    ],
+    'Rack': [
+      "HPE NFV/NON -NFV 42U Rack with 1P G2 Basic PDU - International",
+      "HPE OPEN STACK HP RACK & US/JP AC POWER", "OPEN STACK HP RACK DC POWER"
+    ],
+    'TOR Switch': [
+      "STAND-ALONE NON STDN - TOR ARISTA 7050X3, 32x100GBE QSFP+ & 2XSFP+ SWITCH, REAR TO FRONT AIR, 2XAC",
+      "STAND-ALONE NON STDN - TOR ARISTA 7050X3, 32x100GBE QSFP+ & 2XSFP+ SWITCH, REAR TO FRONT AIR, 2XDC",
+      "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
+      "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU",
+      "LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xAC 2xC13-C14",
+      "LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xDC"
+    ],
+    'Management Switch': [
+      "MANAGEMENT SWITCH - ARISTA 7010T, 48x RJ45 (100/1000), 4 x SFP+ (1/10GbE) SWITCH, REAR TO FRONT AIR",
+      "CISCO NEXUS 92348GC-X – AC MANAGED 48 x 10/100/1000 + 4 x 1/10/25 GIGABIT SFP28 + 2 x 40/100 Gig",
+      "Cisco Nexus mgmt switch 92348GC-X – AC 48 x 10/100/1000 + 4 x 1/10/25 Gigabit SFP28 + 2 x 40/100 Gig"
+    ],
+    'Spine Switch': [
+      "S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
+      "S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU"
+    ],
     'SDN(CCF/BCF) Server': ["Arista CCF Controller (aka BCF) – Dell 15G R450"],
-
-    'Leaf to servers Breakout Cable 100G': ["3M - 100G Multimode breakout  (OM4) 50/125 - 12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks.",
-  "5M  (15FT)- 100G Multimode breakout  (OM4) 50/125  12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks."],
-
+    'Leaf to servers Breakout Cable 100G': [
+      "3M - 100G Multimode breakout  (OM4) 50/125 - 12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks.",
+      "5M  (15FT)- 100G Multimode breakout  (OM4) 50/125  12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks."
+    ],
     'Leaf to Servers 100G SFP\'s': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
-    'Leaf to CCF/SDN Breakout Cable 40G': ["Cable: 40G multimode Fanout Cables MPO-3 meter Plenum Fiber Optic Cable, 40Gb MTP(MPO)/4LC Breakout, OM3"],
+    'Leaf to CCF/SDN Breakout Cable 40G': ["Cable- 40G multimode Fanout Cables MPO-3 meter Plenum Fiber Optic Cable, 40Gb MTP(MPO)/ALC Breakout, OM3"],
     'Leaf to CCF/SDN 40G SFPs': ["QSFP: Finisar FTL410QE2C 40GBase-SR4 QSFP+ Transceiver"],
     'Leaf to Leaf SFPs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
-
-    'Leaf to Leaf Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
-      "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
-      "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
-      "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
+    'Leaf to Leaf Trunk Cable': [
+      "Cable- 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+      "Cable- 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+      "Cable- 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode , MTP Elite Type B OM4",
+      "3 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
       "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
       "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
-      "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"],
-
+      "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"
+    ],
     'Leaf to Management SFP 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
-
-    'Leaf to Management Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
-    "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
-    "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
-    "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
-    "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
-    "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
-    "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"],
-
+    'Leaf to Management Trunk Cable': [
+      "Cable- 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+      "Cable- 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+      "Cable- 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode , MTP Elite Type B OM4",
+      "3 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+      "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
+      "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+      "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"
+    ],
     'Management to servers Ethernet cable': ["GGG-EEE-009 Generic CAT6 9 feet Ethernet cable RJ45"],
     'Management to CCF/SDN Ethernet cable': ["GGG-EEE-009 Generic CAT6 9 feet Ethernet cable RJ45"],
-    'Leaf to Spine SFPs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF, "],
-    
-    'Leaf to Spine Trunk Cable': ["Cable: 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
-    "Cable: 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
-    "Cable: 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68025",
-    "3 Meter Plenum 100G MTP Elite Armored Trunk Cable, 12 Core, Multimode, , MTP Elite Type B OM4",
-    "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
-    "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
-    "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"]
-      });
+    'Leaf to Spine SFPs 100G': ["QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF,"],
+    'Leaf to Spine Trunk Cable': [
+      "Cable- 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010",
+      "Cable- 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019",
+      "Cable- 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode , MTP Elite Type B OM4",
+      "3 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+      "1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4",
+      "2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4",
+      "10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4"
+    ]
+  };
 
   useEffect(() => {
     setNumDataCenters(inputValues.length);
   }, [inputValues]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data.txt');
+        const data = await response.text();
+        const lines = data.split('\n');
+        const descriptionsMap = {};
+        lines.forEach(line => {
+          const [description, itemNumber] = line.split(':');
+          if (description && itemNumber) {
+            descriptionsMap[description.trim()] = itemNumber.trim();
+          }
+        });
+        setDescriptionToItemNumber(descriptionsMap);
+      } catch (error) {
+        console.error('Failed to fetch item numbers:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleChange = (index, e) => {
     const { name, value } = e.target;
     const newDetails = [...hardwareDetails];
     newDetails[index][name] = value;
+    if (name === 'itemDescription' && descriptionToItemNumber[value]) {
+      newDetails[index]['skuNo'] = descriptionToItemNumber[value];
+    }
     setHardwareDetails(newDetails);
   };
 
@@ -273,8 +300,7 @@ const HardwareData = ({ inputValues }) => {
       <table>
         <thead>
           <tr>
-            <th rowSpan={hardwareDetails.length + 1}>
-                Deployment Scenario</th>
+            <th rowSpan={hardwareDetails.length + 1}>Deployment Scenario</th>
             <th>Category</th>
             <th>Item Type</th>
             <th>Item Description</th>
@@ -314,7 +340,7 @@ const HardwareData = ({ inputValues }) => {
                   <select
                     name="itemDescription"
                     value={hardware.itemDescription}
-                    className="long-text-field"
+                    className="extra-long-text-field"
                     onChange={(e) => handleChange(index, e)}
                   >
                     <option value="">Select Description</option>

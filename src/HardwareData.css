@@ -15,6 +15,10 @@
     padding: 10px;
   }
 
+  .extra-long-text-field {
+    width: 400px;
+  }
+
   .long-text-field {
     width: 250px;
   }

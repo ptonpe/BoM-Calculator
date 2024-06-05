@@ -61,6 +61,7 @@ const App = () => {
       totalCURedundancy: 0
     },
   ]);
+  const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
 
   const handleNumDataCentersChange = (e) => {
     const num = parseInt(e.target.value);
@@ -167,6 +168,33 @@ const App = () => {
   useEffect(() => {
     fetchCalculatedValues(inputValues);
   }, [numDataCenters]);
+
+  // Function to fetch data from the text file and create the mapping
+  const fetchData = async () => {
+    const response = await fetch('/path/to/data.txt'); // Adjust the path to your data.txt file
+    const text = await response.text();
+    const lines = text.split('\n');
+    const data = {};
+
+    lines.forEach(line => {
+      const [description, itemNumber] = line.split(':');
+      if (description && itemNumber) {
+        data[description.trim()] = itemNumber.trim();
+      }
+    });
+
+    return data;
+  };
+
+  // UseEffect to fetch the mapping when the component mounts
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchData();
+      setDescriptionToItemNumber(data);
+    };
+
+    loadData();
+  }, []);
 
   return (
     <Router>
@@ -369,7 +397,7 @@ const App = () => {
               <Link to="/hardware"><button>Go to Hardware Page</button></Link>
             </div>
           } />
-          <Route path="/hardware" element={<HardwareData inputValues={inputValues}/>} />
+          <Route path="/hardware" element={<HardwareData inputValues={inputValues} descriptionToItemNumber={descriptionToItemNumber}/>} />
         </Routes>
       </div>
     </Router>

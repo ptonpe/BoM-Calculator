@@ -1,0 +1,41 @@
+HPE NFV/NON -NFV 42U Rack with 1P G2 Basic PDU - International : 506-490-100
+HPE OPEN STACK HP RACK & US/JP AC POWER : 506-470-100
+OPEN STACK HP RACK DC POWER : 506-100-100
+Arista CCF Controller (aka BCF) – Dell 15G R450 : 516-840-100
+MANAGEMENT SWITCH - ARISTA 7010T, 48x RJ45 (100/1000), 4 x SFP+ (1/10GbE) SWITCH, REAR TO FRONT AIR : 506-265-100
+STAND-ALONE NON STDN - TOR ARISTA 7050X3, 32x100GBE QSFP+ & 2XSFP+ SWITCH, REAR TO FRONT AIR, 2XAC : 506-280-100
+STAND-ALONE NON STDN - TOR ARISTA 7050X3, 32x100GBE QSFP+ & 2XSFP+ SWITCH, REAR TO FRONT AIR, 2XDC : 506-285-100
+S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU : 502-300-100
+S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU : 502-305-100
+S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU : 502-340-100
+S5232-F-ON DC ToR - Spine Switch 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU : 502-345-100
+CISCO NEXUS 92348GC-X – AC MANAGED 48 x 10/100/1000 + 4 x 1/10/25 GIGABIT SFP28 + 2 x 40/100 Gig : 502-240-100
+Cisco Nexus mgmt switch 92348GC-X – AC 48 x 10/100/1000 + 4 x 1/10/25 Gigabit SFP28 + 2 x 40/100 Gig : 502-245-100
+LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xAC 2xC13-C14 : 506-255-100
+LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xDC : 506-260-100
+Dell 15G Master Control Node R650, AC : 516-590-100
+Dell 15G Master Control Node R650, DC : 516-595-100
+Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC) : 516-640-100
+Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC) : 516-635-100
+Cable- 40G multimode Fanout Cables MPO-3 meter Plenum Fiber Optic Cable, 40Gb MTP(MPO)/ALC Breakout, OM3 : 506-108-100
+Cable- 2meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#69010 : 506-109-100
+Cable- 1meter MTP Female to Female 12 Fibers OM3 50/125 Multimode Trunk Cable, Type B, Elite, Plenum (OFNP), Aqua#68019 : 506-120-100
+Cable- 1M (3ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode , MTP Elite Type B OM4 : 506-123-100
+Cable- 10M (33ft)MTP Female to Female 12 Fibers OM3 50/125 Multimode , MTP Elite Type B OM4 : 506-154-100
+3 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4 : 506-152-100
+1M -12 Fiber Plenum 100G MTP® Trunk Cable w/FiberShield Multimode 50/122-1 Meter MTP-MTP Connectors Type B OM4 : 506-155-100
+2 Meter Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4 : 506-150-100
+3M - 100G Multimode breakout  (OM4) 50/125 - 12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks. : 506-157-100
+5M  (15FT)- 100G Multimode breakout  (OM4) 50/125  12 Strand Plenum MPO Armored Harness with MPO(Female)-LC connectors. OM4 (Aqua) Plenum MPO Armored Harness for 40G/100G fiber optic networks. : 506-159-100
+Dell 15G Standard Worker R750XL, 2x6338N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC) : 516-640-100
+Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB  4x1.6TB SAS MU, PSU 1400W (AC) : 516-635-100
+QSFP: Finisar FTL410QE2C 40GBase-SR4 QSFP+ Transceiver : 506-110-100
+QSFP28,100m,100GBASE-SR4,4x 850nm VCSEL, MMF, : 506-185-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC : 515-640-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC : 515-635-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC : 515-640-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC : 515-635-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC : 515-640-100
+Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC : 515-635-100
+10M  (33FT) Plenum 100G MTP Elite Armored Trunk Cable,12 Core, Multimode, , MTP Elite Type B OM4 : 506-155-100
+GGG-EEE-009 Generic CAT6 9 feet Ethernet cable RJ45 : 100001343
