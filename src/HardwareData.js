@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HardwareData.css'; 
 
-const HardwareData = ({ inputValues }) => {
+const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
   const [numDataCenters, setNumDataCenters] = useState(inputValues.length);
   const [hardwareDetails, setHardwareDetails] = useState([
     {
@@ -51,7 +51,7 @@ const HardwareData = ({ inputValues }) => {
       itemType: 'TOR Switch',
       itemDescription: '',
       skuNo: '',
-      qty: 1,
+      qty: 2,
       uom: 'Leaf',
     },
     {
@@ -59,7 +59,7 @@ const HardwareData = ({ inputValues }) => {
       itemType: 'Management Switch',
       itemDescription: '',
       skuNo: '',
-      qty: 2,
+      qty: 1,
       uom: 'Management',
     },
     {
@@ -124,7 +124,7 @@ const HardwareData = ({ inputValues }) => {
       itemType: 'Leaf to Leaf Trunk Cable',
       itemDescription: '',
       skuNo: '',
-      qty: 2,
+      qty: 1,
       uom: 'Leaf',
     },
     {
@@ -176,8 +176,6 @@ const HardwareData = ({ inputValues }) => {
       uom: 'Leaf',
     },
   ]);
-
-  const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
 
   const itemDescriptions = {
     'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
@@ -253,27 +251,6 @@ const HardwareData = ({ inputValues }) => {
   useEffect(() => {
     setNumDataCenters(inputValues.length);
   }, [inputValues]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/data.txt');
-        const data = await response.text();
-        const lines = data.split('\n');
-        const descriptionsMap = {};
-        lines.forEach(line => {
-          const [description, itemNumber] = line.split(':');
-          if (description && itemNumber) {
-            descriptionsMap[description.trim()] = itemNumber.trim();
-          }
-        });
-        setDescriptionToItemNumber(descriptionsMap);
-      } catch (error) {
-        console.error('Failed to fetch item numbers:', error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleChange = (index, e) => {
     const { name, value } = e.target;
@@ -368,9 +345,58 @@ const HardwareData = ({ inputValues }) => {
                   <td key={i}>
                     <input
                       name={`dataCenter${i + 1}`}
-                      value={hardware[`dataCenter${i + 1}`] || ''}
+                      value={
+                        hardware.category === 'Utility Server'
+                          ? inputValues[i].nosOfUtilityServers * hardware.qty
+                          : hardware.category === 'Automation Servers'
+                          ? inputValues[i].nosOfAutomationClusterServers
+                          : hardware.category === 'RAN Management'
+                          ? inputValues[i].nosOfRanMgmtClusterServers
+                          : hardware.category === 'CU Server'
+                          ? inputValues[i].nosOfCuClusterServers
+                          : hardware.itemType === 'Rack'
+                          ? inputValues[i].nosOfRacks
+                          : hardware.itemType === 'TOR Switch'
+                          ? inputValues[i].nosOfRacks * 2
+                          : hardware.itemType === 'Management Switch'
+                          ? inputValues[i].nosOfRacks * hardware.qty
+                          : hardware.itemType === 'Spine Switch'
+                          ? (
+                            inputValues[i].nosOfRacks <= 1 ? 0 : 2
+                          )
+                          : hardware.itemType === 'SDN(CCF/BCF) Server'
+                          ? (
+                            (inputValues[i].nosOfRacks * hardware.qty) == 0 ? 0 : (inputValues[i].nosOfRacks * hardware.qty) <= 24 ? 2 : 4 
+                          )
+                          : hardware.itemType === 'Leaf to servers Breakout Cable 100G'
+                          ? inputValues[i].totalNosOfServers * hardware.qty
+                          : hardware.itemType === 'Leaf to Servers 100G SFP\'s'
+                          ? inputValues[i].totalNosOfServers * hardware.qty
+                          : hardware.itemType === 'Leaf to CCF/SDN Breakout Cable 40G'
+                          ? ((inputValues[i].nosOfRacks * hardware.qty) == 0 ? 0 : (inputValues[i].nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+                          : hardware.itemType === 'Leaf to CCF/SDN 40G SFPs'
+                          ? ((inputValues[i].nosOfRacks * hardware.qty) == 0 ? 0 : (inputValues[i].nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+                          : hardware.itemType === 'Leaf to Leaf SFPs 100G'
+                          ? (inputValues[i].nosOfRacks * hardware.qty) * hardware.qty
+                          : hardware.itemType === 'Leaf to Leaf Trunk Cable'
+                          ? (inputValues[i].nosOfRacks * 2) * hardware.qty
+                          : hardware.itemType === 'Leaf to Management SFP 100G'
+                          ? (inputValues[i].nosOfRacks * hardware.qty) * hardware.qty
+                          : hardware.itemType === 'Leaf to Management Trunk Cable'
+                          ? (inputValues[i].nosOfRacks * 2) * hardware.qty
+                          : hardware.itemType === 'Management to servers Ethernet cable'
+                          ? inputValues[i].totalNosOfServers * hardware.qty
+                          : hardware.itemType === 'Management to CCF/SDN Ethernet cable'
+                          ? ((inputValues[i].nosOfRacks * hardware.qty) == 0 ? 0 : (inputValues[i].nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+                          : hardware.itemType === 'Leaf to Spine SFPs 100G'
+                          ? (inputValues[i].nosOfRacks * hardware.qty) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+                          : hardware.itemType === 'Leaf to Spine Trunk Cable'
+                          ? (inputValues[i].nosOfRacks * hardware.qty) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+                          : hardware[`dataCenter${i + 1}`] || ''
+                      }
                       className="short-text-field"
                       onChange={(e) => handleChange(index, e)}
+                      readOnly={hardware.category === 'Utility Server'}
                     />
                   </td>
                 ))}

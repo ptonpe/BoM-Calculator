@@ -13,7 +13,7 @@ const App = () => {
       nosOfNodes: 100,
       siteConfigType: 'Data Center 1',
       totalNosOfServers: 8,
-      nosOfUtilityServers: 0,
+      nosOfUtilityServers: 2, // Sample value for nosOfUtilityServers
       nosOfAutomationClusterServers: 0,
       nosOfRanMgmtClusterServers: 4,
       nosOfCuClusterServers: 0,
@@ -134,8 +134,6 @@ const App = () => {
     newValues[index][name] = value;
     setInputValues(newValues);
 
-    console.log('Updated Input Values:', newValues);  // Debugging: Log updated values
-
     if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
     'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage'].includes(name)) {
       await fetchCalculatedValues(newValues);
@@ -144,7 +142,6 @@ const App = () => {
 
   const fetchCalculatedValues = async (values) => {
     try {
-      console.log('Sending Values to Backend:', values);  // Debugging: Log values being sent to backend
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
         headers: {
@@ -158,7 +155,6 @@ const App = () => {
       }
 
       const data = await response.json();
-      console.log('Received Calculated Values:', data);  // Debugging: Log received calculated values
       setInputValues(data);
     } catch (error) {
       console.error('Failed to fetch calculated values:', error);
@@ -169,9 +165,8 @@ const App = () => {
     fetchCalculatedValues(inputValues);
   }, [numDataCenters]);
 
-  // Function to fetch data from the text file and create the mapping
   const fetchData = async () => {
-    const response = await fetch('/path/to/data.txt'); // Adjust the path to your data.txt file
+    const response = await fetch('/data.txt');
     const text = await response.text();
     const lines = text.split('\n');
     const data = {};
@@ -186,7 +181,6 @@ const App = () => {
     return data;
   };
 
-  // UseEffect to fetch the mapping when the component mounts
   useEffect(() => {
     const loadData = async () => {
       const data = await fetchData();
