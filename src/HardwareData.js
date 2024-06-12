@@ -100,7 +100,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
       itemType: 'Leaf to CCF/SDN Breakout Cable 40G',
       itemDescription: '',
       skuNo: '',
-      qty: 1,
+      qty: 2,
       uom: 'Server',
     },
     {
@@ -108,7 +108,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
       itemType: 'Leaf to CCF/SDN 40G SFPs',
       itemDescription: '',
       skuNo: '',
-      qty: 1,
+      qty: 2,
       uom: 'Server',
     },
     {
@@ -336,6 +336,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
                     value={hardware.qty}
                     className="short-text-field"
                     onChange={(e) => handleChange(index, e)}
+                    readOnly
                   />
                 </td>
                 <td>
