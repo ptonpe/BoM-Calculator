@@ -67,7 +67,8 @@ const App = () => {
       Sdaas: 5,
       MTCIL: 16,
       ODF: 12,
-      OSD: 12
+      OSD: 12,
+      totalNosOfPCORE: 0,
     },
   ]);
   const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
@@ -139,7 +140,8 @@ const App = () => {
           Sdaas: 0,
           MTCIL: 0,
           ODF: 0,
-          OSD: 0
+          OSD: 0,
+          totalNosOfPCORE: 0,
         });
       }
       return newValues.slice(0, num);
@@ -247,11 +249,11 @@ const App = () => {
     perInstance4G: 'Per Instance 4G',
     perInstance5GFDD: 'Per Instance 5G FDD',
     perInstance5GTDD: 'Per Instance 5G TDD',
-    perInstance4GCard: 'Per Instance 4G Card',
-    perInstance5GFDDCard: 'Per Instance 5G FDD Card',
-    perInstance5GTDDCard: 'Per Instance 5G TDD Card',
-    plannedFDDCard: 'Planned FDD Card',
-    plannedTDDCard: 'Planned TDD Card',
+    perInstance4GCard: 'Per Instance 4G Cardinality',
+    perInstance5GFDDCard: 'Per Instance 5G FDD Cardinality',
+    perInstance5GTDDCard: 'Per Instance 5G TDD Cardinality',
+    plannedFDDCard: 'Planned FDD Cardinality',
+    plannedTDDCard: 'Planned TDD Cardinality',
     total4GServers: 'Total 4G Servers',
     total5GFDDServers: 'Total 5G FDD Servers',
     total5GTDDServers: 'Total 5G TDD Servers',
@@ -269,7 +271,8 @@ const App = () => {
     Sdaas: 'SDAAS',
     MTCIL: 'MTCIL',
     ODF: 'ODF',
-    OSD: 'OSD'
+    OSD: 'OSD',
+    totalNosOfPCORE: 'Total PCORE'
   };
 
   return (
@@ -404,7 +407,7 @@ const App = () => {
                 </table>
               </div>
               <div>
-                <h4>Additional MTCIL Parameters</h4>
+                <h4></h4>
                 <table>
                   <thead>
                     <tr>
@@ -415,7 +418,7 @@ const App = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {['CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD'].map((param, paramIndex) => (
+                    {['CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'totalNosOfPCORE'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
