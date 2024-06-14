@@ -18,6 +18,7 @@ const App = () => {
       nosOfRanMgmtClusterServers: 4,
       nosOfCuClusterServers: 0,
       nosOfRacks: 0,
+      DU: 'SNO',
       vCU: 0,
       vDU: 0,
       RUs: 0,
@@ -62,6 +63,7 @@ const App = () => {
       isCURedundant: 0,
       redundancyPercentage: 0,
       totalCURedundancy: 0,
+      nCMS: 0,
       CRDL: 32,
       MasterComponents: 36,
       Sdaas: 5,
@@ -69,6 +71,8 @@ const App = () => {
       ODF: 12,
       OSD: 12,
       totalNosOfPCORE: 0,
+      DU: 'Stretch Cluster',
+      isFixed: 'Yes'
     },
   ]);
   const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
@@ -91,6 +95,7 @@ const App = () => {
           nosOfRanMgmtClusterServers: 4,
           nosOfCuClusterServers: 0,
           nosOfRacks: 1,
+          DU: 'SNO',
           vCU: 0,
           vDU: 0,
           RUs: 0,
@@ -135,6 +140,7 @@ const App = () => {
           isCURedundant: 0,
           redundancyPercentage: 0,
           totalCURedundancy: 0,
+          nCMS: 0,
           CRDL: 0,
           MasterComponents: 0,
           Sdaas: 0,
@@ -142,6 +148,8 @@ const App = () => {
           ODF: 0,
           OSD: 0,
           totalNosOfPCORE: 0,
+          DU: 'Stretch Cluster',
+          isFixed: 'Yes'
         });
       }
       return newValues.slice(0, num);
@@ -154,9 +162,9 @@ const App = () => {
     newValues[index][name] = value;
     setInputValues(newValues);
 
-    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 
-    'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
-    'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD'].includes(name)) {
+    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD',
+      'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
+      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -223,6 +231,7 @@ const App = () => {
     nosOfRanMgmtClusterServers: 'RAN Mgmt Cluster Servers',
     nosOfCuClusterServers: 'CU Cluster Servers',
     nosOfRacks: 'Number of Racks',
+    DU: 'DU',
     vCU: 'vCU',
     vDU: 'vDU',
     RUs: 'RUs',
@@ -272,7 +281,9 @@ const App = () => {
     MTCIL: 'MTCIL',
     ODF: 'ODF',
     OSD: 'OSD',
-    totalNosOfPCORE: 'Total PCORE'
+    nCMS: 'mCMS',
+    totalNosOfPCORE: 'Total PCORE',
+    isFixed: 'Fixed Values?'
   };
 
   return (
@@ -325,23 +336,23 @@ const App = () => {
                     </tr>
                   ))}
                   {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
-                  'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
-                  'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy',
-                  'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF','OSD', 'nCMS', 'totalNosOfPCORE'].includes(param)).map((param, paramIndex) => (
-                    <tr key={paramIndex}>
-                      <td>{paramLabels[param]}</td>
-                      {inputValues.map((values, index) => (
-                        <td key={index}>
-                          <input name={param} value={values[param]} readOnly />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                    'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
+                    'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy',
+                    'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'nCMS', 'totalNosOfPCORE'].includes(param)).map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{paramLabels[param]}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} readOnly />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               <div>
                 <h3>RAN Management vBOM</h3>
-                <h4>nCMS Dimensioning</h4>
+                <h4>mCMS Dimensioning</h4>
                 <table>
                   <thead>
                     <tr>
@@ -372,6 +383,29 @@ const App = () => {
                     </tr>
                   </tbody>
                 </table>
+                <h4>XA Dimensioning</h4>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameters</th>
+                      {inputValues.map((_, index) => (
+                        <th key={index}>Data Center {index + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {['XApc', 'XAstor'].map((param, paramIndex) => (
+                      <tr key={paramIndex}>
+                        <td>{paramLabels[param]}</td>
+                        {inputValues.map((values, index) => (
+                          <td key={index}>
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
               <div>
                 <h4>MTCIL Dimensioning</h4>
@@ -385,12 +419,20 @@ const App = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {['vDU2', 'vCUCPUP', 'PTP', 'XApc', 'XAstor'].map((param, paramIndex) => (
+                    {['DU', 'vDU2', 'vCUCPUP', 'PTP'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            {param === 'DU' ? (
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} >
+                                <option value="SNO">SNO</option>
+                                <option value="Stretch Cluster">Stretch Cluster</option>
+                              </select>
+                            ) : (
+                              <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)}
+                                disabled={values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')} />
+                            )}
                           </td>
                         ))}
                       </tr>
@@ -418,16 +460,25 @@ const App = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {['CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'totalNosOfPCORE'].map((param, paramIndex) => (
+                    {['isFixed', 'nCMS', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'totalNosOfPCORE'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} readOnly />
+                            {param === 'isFixed' ? (
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            ) : (
+                              < input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} 
+                              readOnly={values.isFixed === 'Yes' && ['CRDL', 'MasterComponents', 'Sdaas', 'ODF', 'OSD'].includes(param)} />
+                            )}
                           </td>
                         ))}
                       </tr>
                     ))}
+
                   </tbody>
                 </table>
               </div>
@@ -573,7 +624,7 @@ const App = () => {
               <Link to="/hardware"><button>Go to Hardware Page</button></Link>
             </div>
           } />
-          <Route path="/hardware" element={<HardwareData inputValues={inputValues} descriptionToItemNumber={descriptionToItemNumber}/>} />
+          <Route path="/hardware" element={<HardwareData inputValues={inputValues} descriptionToItemNumber={descriptionToItemNumber} />} />
         </Routes>
       </div>
     </Router>
