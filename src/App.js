@@ -341,7 +341,7 @@ const App = () => {
                   {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
                     'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
                     'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy',
-                    'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'nCMS', 'totalNosOfPCORE'].includes(param)).map((param, paramIndex) => (
+                    'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'nCMS', 'totalNosOfPCORE', 'DU', 'sectorPerSite', 'isFixed'].includes(param)).map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
