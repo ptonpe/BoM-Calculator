@@ -71,6 +71,7 @@ const App = () => {
       ODF: 12,
       OSD: 12,
       totalNosOfPCORE: 0,
+      sectorPerSite: 0,
       DU: 'Stretch Cluster',
       isFixed: 'Yes'
     },
@@ -141,13 +142,14 @@ const App = () => {
           redundancyPercentage: 0,
           totalCURedundancy: 0,
           nCMS: 0,
-          CRDL: 0,
-          MasterComponents: 0,
-          Sdaas: 0,
-          MTCIL: 0,
-          ODF: 0,
-          OSD: 0,
+          CRDL: 32,
+          MasterComponents: 36,
+          Sdaas: 5,
+          MTCIL: 16,
+          ODF: 12,
+          OSD: 12,
           totalNosOfPCORE: 0,
+          sectorPerSite: 0,
           DU: 'Stretch Cluster',
           isFixed: 'Yes'
         });
@@ -164,7 +166,7 @@ const App = () => {
 
     if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD',
       'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
-      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU'].includes(name)) {
+      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU', 'sectorPerSite'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -283,7 +285,8 @@ const App = () => {
     OSD: 'OSD',
     nCMS: 'mCMS',
     totalNosOfPCORE: 'Total PCORE',
-    isFixed: 'Fixed Values?'
+    isFixed: 'Fixed Values?',
+    sectorPerSite: 'Sector Per Site'
   };
 
   return (
@@ -495,7 +498,7 @@ const App = () => {
                   </thead>
                   <tbody>
                     {/* 4G Data Fields */}
-                    {['nosOfSites', 'cellsPerSector4G', 'absMidhaulPer4G', 'pooling4G'].map((param, paramIndex) => (
+                    {['nosOfSites', 'sectorPerSite','cellsPerSector4G', 'absMidhaulPer4G', 'pooling4G'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
