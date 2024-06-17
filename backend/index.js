@@ -44,6 +44,9 @@ app.post('/calculate', (req, res) => {
         isCU,
         isCURedundant,
         redundancyPercentage,
+        cellsPerSector4G,
+        cellsPerSectorFDD,
+        cellsPerSectorTDD
       } = center;
 
 
@@ -114,13 +117,13 @@ app.post('/calculate', (req, res) => {
       const nosOfRanMgmtClusterServers = RANservers + additionalServers;
 
       const pooling4GDouble = (100 - pooling4G) / 100;
-      const absMidhaulThrough4G = nosOfSites * (absMidhaulPer4G * (pooling4GDouble));
+      const absMidhaulThrough4G = nosOfSites * (absMidhaulPer4G * (pooling4GDouble)) * cellsPerSector4G;
 
       const pooling5GFDDDouble = (100 - pooling5GFDD) / 100;
-      const absMidhaulThrough5GFDD = nosOfSites * (absMidhaulPer5GFDD * (pooling5GFDDDouble));
+      const absMidhaulThrough5GFDD = nosOfSites * (absMidhaulPer5GFDD * (pooling5GFDDDouble)) * cellsPerSectorFDD;
 
       const pooling5GTDDDouble = (100 - pooling5GTDD) / 100;
-      const absMidhaulThrough5GTDD = nosOfSites * (absMidhaulPerTDD * (pooling5GTDDDouble));
+      const absMidhaulThrough5GTDD = nosOfSites * (absMidhaulPerTDD * (pooling5GTDDDouble)) * cellsPerSectorTDD;
 
       const perInstance4G = Math.ceil(absMidhaulThrough4G / 6000);
       const perInstance5GFDD = Math.ceil(absMidhaulThrough5GFDD / 12000);
