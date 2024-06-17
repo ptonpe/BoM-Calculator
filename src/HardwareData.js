@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HardwareData.css'; 
+import * as XLSX from 'xlsx';
 
 const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
   const [numDataCenters, setNumDataCenters] = useState(inputValues.length);
@@ -268,12 +269,41 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
 
   let prevCategory = '';
 
+  const exportToExcel = () => {
+    const tableData = hardwareDetails.map((hardware, index) => {
+      const rowData = {
+        'Category': hardware.category,
+        'Item Type': hardware.itemType,
+        'Item Description': hardware.itemDescription,
+        'SKU No': hardware.skuNo,
+        'Qty': hardware.qty,
+        'UOM': hardware.uom,
+      };
+
+      inputValues.forEach((_, i) => {
+        rowData[`Data Center ${i + 1}`] = hardware[`dataCenter${i + 1}`] || '';
+      });
+
+      return rowData;
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(tableData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Hardware Data');
+
+    XLSX.writeFile(workbook, 'hardware_data.xlsx');
+  };
+
+
+
+
   return (
     <div>
       <h2>Hardware Details</h2>
       <Link to="/">
         <button>Back to Main Page</button>
       </Link>
+      <button className="export-button" onClick={exportToExcel}> Export to Excel </button>
       <table>
         <thead>
           <tr>
