@@ -248,9 +248,9 @@ const App = () => {
     cellsPerSector4G: '4G Cells Per Sector',
     cellsPerSectorFDD: '5G FDD Cells Per Sector',
     cellsPerSectorTDD: '5G TDD Cells Per Sector',
-    absMidhaulPer4G: 'Abs Midhaul Per 4G',
-    absMidhaulPer5GFDD: 'Abs Midhaul Per 5G FDD',
-    absMidhaulPerTDD: 'Abs Midhaul Per TDD',
+    absMidhaulPer4G: 'Midhaul 4G per site per carrier',
+    absMidhaulPer5GFDD: 'Midhaul 5GFDD per site per carrier',
+    absMidhaulPerTDD: 'Midhaul 5GTDD per site per carrier',
     pooling4G: 'Pooling 4G',
     pooling5GFDD: 'Pooling 5G FDD',
     pooling5GTDD: 'Pooling 5G TDD',
@@ -498,7 +498,7 @@ const App = () => {
                   </thead>
                   <tbody>
                     {/* 4G Data Fields */}
-                    {['absMidhaulPer4G', 'cellsPerSector4G', 'pooling4G', 'nosOfSites', 'sectorPerSite'].map((param, paramIndex) => (
+                    {['nosOfSites', 'sectorPerSite','cellsPerSector4G', 'absMidhaulPer4G', 'pooling4G'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
@@ -528,7 +528,7 @@ const App = () => {
                     </tr>
 
                     {/* 5GFDD Data Fields */}
-                    {['absMidhaulPer5GFDD','cellsPerSectorFDD', 'pooling5GFDD'].map((param, paramIndex) => (
+                    {['cellsPerSectorFDD', 'absMidhaulPer5GFDD', 'pooling5GFDD'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
@@ -566,7 +566,7 @@ const App = () => {
                     </tr>
 
                     {/* 5GTDD Data Fields */}
-                    {['absMidhaulPerTDD','cellsPerSectorTDD', 'pooling5GTDD'].map((param, paramIndex) => (
+                    {['cellsPerSectorTDD', 'absMidhaulPerTDD', 'pooling5GTDD'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (

@@ -392,7 +392,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
                           : hardware.itemType === 'Leaf to Spine SFPs 100G'
                           ? (inputValues[i].nosOfRacks * hardware.qty) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
                           : hardware.itemType === 'Leaf to Spine Trunk Cable'
-                          ? (inputValues[i].nosOfRacks * hardware.qty) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+                          ? (inputValues[i].nosOfRacks * 2) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
                           : hardware[`dataCenter${i + 1}`] || ''
                       }
                       className="short-text-field"
