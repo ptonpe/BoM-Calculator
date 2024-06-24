@@ -74,7 +74,8 @@ const App = () => {
       totalNosOfPCORE: 0,
       sectorPerSite: 0,
       DU: 'Stretch Cluster',
-      isFixed: 'Yes'
+      isFixed: 'Yes',
+      additionalCluster: 'Select',
     },
   ]);
   const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
@@ -152,7 +153,8 @@ const App = () => {
           totalNosOfPCORE: 0,
           sectorPerSite: 0,
           DU: 'Stretch Cluster',
-          isFixed: 'Yes'
+          isFixed: 'Yes',
+          additionalCluster: 'Select',
         });
       }
       return newValues.slice(0, num);
@@ -166,19 +168,19 @@ const App = () => {
     setInputValues(newValues);
 
     // If isCU is set to 1, set vCUCPUP to 0
-  if (name === 'isCU' && value === '1') {
-    newValues[index].vCUCPUP = 0;
-  }
-  //setInputValues(newValues);
+    if (name === 'isCU' && value === '1') {
+      newValues[index].vCUCPUP = 0;
+    }
+    //setInputValues(newValues);
 
     if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD',
       'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
-      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU', 'sectorPerSite'].includes(name)) {
+      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU', 'sectorPerSite', 'additionalClusters'].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
 
-  const fetchCalculatedValues = async (values) => {  
+  const fetchCalculatedValues = async (values) => {
     try {
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
@@ -293,14 +295,15 @@ const App = () => {
     nCMS: 'mCMS',
     totalNosOfPCORE: 'Total PCORE',
     isFixed: 'Fixed Values?',
-    sectorPerSite: 'Sector Per Site'
+    sectorPerSite: 'Sector Per Site',
+    additionalCluster: 'Additional Cluster',
   };
 
   return (
     <Router>
       <div className="App">
         <Routes>
-        <Route exact path="/" element={<ReadMe />} />
+          <Route exact path="/" element={<ReadMe />} />
           <Route exact path="/main" element={
             <div>
               <div>
@@ -441,13 +444,18 @@ const App = () => {
                                 <option value="Stretch Cluster">Stretch Cluster</option>
                               </select>
                             ) : (
-                              <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)}
-                                disabled={values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')} />
+                              <input
+                                name={param}
+                                value={values[param]}
+                                onChange={(e) => handleChange(index, e)}
+                                disabled={(values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')) || (param === 'vCUCPUP' && values.isCU === '1')}
+                              />
                             )}
                           </td>
                         ))}
                       </tr>
                     ))}
+
                     <tr>
                       <td>{paramLabels['totalNFs']}</td>
                       {inputValues.map((values, index) => (
@@ -482,8 +490,8 @@ const App = () => {
                                 <option value="No">No</option>
                               </select>
                             ) : (
-                              < input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} 
-                              readOnly={values.isFixed === 'Yes' && ['CRDL', 'MasterComponents', 'Sdaas', 'ODF', 'OSD'].includes(param)} />
+                              < input name={param} value={values[param]} onChange={(e) => handleChange(index, e)}
+                                readOnly={values.isFixed === 'Yes' && ['CRDL', 'MasterComponents', 'Sdaas', 'ODF', 'OSD'].includes(param)} />
                             )}
                           </td>
                         ))}
@@ -506,7 +514,7 @@ const App = () => {
                   </thead>
                   <tbody>
                     {/* 4G Data Fields */}
-                    {['nosOfSites', 'sectorPerSite','cellsPerSector4G', 'absMidhaulPer4G', 'pooling4G'].map((param, paramIndex) => (
+                    {['nosOfSites', 'sectorPerSite', 'cellsPerSector4G', 'absMidhaulPer4G', 'pooling4G'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
@@ -612,7 +620,7 @@ const App = () => {
                     </tr>
 
                     {/* CU and Other Data Fields */}
-                    {['isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy'].map((param, paramIndex) => (
+                    {['isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy', 'additionalCluster'].map((param, paramIndex) => (
                       <tr key={paramIndex}>
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
@@ -621,6 +629,12 @@ const App = () => {
                               <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
+                              </select>
+                            ) : param === 'additionalCluster' ? (
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                                <option value="Storage Cluster">Storage Cluster</option>
+                                <option value="mTA Cluster">mTA Cluster</option>
+                                <option value="None">None</option>
                               </select>
                             ) : (
                               <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
