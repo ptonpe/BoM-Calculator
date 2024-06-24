@@ -101,7 +101,7 @@ app.post('/calculate', (req, res) => {
         nCMS = 32;
       } else if (totalCNFs > 775 && totalCNFs <= 4800) {
         nCMS = 43;
-      } else if (totalCNFs >= 1500) {
+      } else if (totalCNFs >= 4800) {
         nCMS = 61;
       }
 

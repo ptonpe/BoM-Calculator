@@ -6,7 +6,7 @@ const ReadMe = () => {
   return (
     <ChakraProvider>
       <Box maxW="800px" mx="auto" p={6}>
-        <Heading as="h1" mb={6}>Welcome to the Hardware Dimensioning Tool</Heading>
+        <Heading as="h1" mb={6}>Welcome to the BOM Generator Tool</Heading>
         <Text fontSize="lg" mb={4}>
           This tool helps you dimension your hardware based on various parameters and configurations. Below are the steps to use the tool:
         </Text>
