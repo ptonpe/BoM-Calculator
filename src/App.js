@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HardwareData from './HardwareData';
-import ReadMe from './Readme';
+import ReadMe from './ReadMe';
 
 const App = () => {
   const [numDataCenters, setNumDataCenters] = useState(1);
