@@ -52,6 +52,8 @@ app.post('/calculate', (req, res) => {
 
       // Define the formula or logic for calculating the other parameters
       const nosOfUtilityServers = nosOfNodes == 0 ? 0 : 1;
+      const realvCUCPUP = parseInt(vCUCPUP);
+      const adjustedVCUCPUP = isCU === 1 ? 0 : realvCUCPUP;
       
       let nosOfAutomationClusterServers = 0;
       if (automationCluster == 1) {
@@ -65,7 +67,7 @@ app.post('/calculate', (req, res) => {
       }
       
       const totalCNFs = parseInt(vCU) + parseInt(vDU) + parseInt(RUs);
-      const totalNFs = parseInt(vDU2) + parseInt(vCUCPUP) + parseInt(PTP);
+      const totalNFs = parseInt(vDU2) + parseInt(adjustedVCUCPUP) + parseInt(PTP);
 
 
       // Calculating MTCIL based on totalNFs

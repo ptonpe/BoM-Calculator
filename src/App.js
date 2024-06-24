@@ -164,6 +164,12 @@ const App = () => {
     newValues[index][name] = value;
     setInputValues(newValues);
 
+    // If isCU is set to 1, set vCUCPUP to 0
+  if (name === 'isCU' && value === '1') {
+    newValues[index].vCUCPUP = 0;
+  }
+  //setInputValues(newValues);
+
     if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD',
       'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
       'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU', 'sectorPerSite'].includes(name)) {
@@ -171,7 +177,7 @@ const App = () => {
     }
   };
 
-  const fetchCalculatedValues = async (values) => {
+  const fetchCalculatedValues = async (values) => {  
     try {
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
@@ -254,9 +260,9 @@ const App = () => {
     pooling4G: 'Pooling 4G',
     pooling5GFDD: 'Pooling 5G FDD',
     pooling5GTDD: 'Pooling 5G TDD',
-    absMidhaulThrough4G: 'Abs Midhaul Through 4G',
-    absMidhaulThrough5GFDD: 'Abs Midhaul Through 5G FDD',
-    absMidhaulThrough5GTDD: 'Abs Midhaul Through 5G TDD',
+    absMidhaulThrough4G: 'Absolute Midhaul Through 4G',
+    absMidhaulThrough5GFDD: 'Absolute Midhaul Through 5G FDD',
+    absMidhaulThrough5GTDD: 'Absolute Midhaul Through 5G TDD',
     perInstance4G: 'Per Instance 4G',
     perInstance5GFDD: 'Per Instance 5G FDD',
     perInstance5GTDD: 'Per Instance 5G TDD',

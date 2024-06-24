@@ -38,6 +38,23 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
       qty: 1,
       uom: 'Server',
     },
+    {
+      category: 'Storage Server',
+      itemType: 'storage',
+      itemDescription: '',
+      skuNo: '',
+      qty: 1,
+      uom: 'Server',
+    },
+    {
+      category: 'mTA Analytics',
+      itemType: 'mTA',
+      itemDescription: '',
+      skuNo: '',
+      qty: 1,
+      uom: 'Server',
+    },
+
     // Fabric category with specified Item Types
     {
       category: 'Fabric',
@@ -179,12 +196,25 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
   ]);
 
   const itemDescriptions = {
-    'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC"],
+    'Dell R650': ["Dell 15G Master Control Node R650, DC", "Dell 15G Master Control Node R650, AC",
+      "Dell 16G Master Control Node Intel, AC (1x5418Y(24c), 256GB RAM, 2x Intel E810 Dual Port NIC, SSD 2x 1.6TB SAS MU, PSU 800W (AC))", 
+      "Dell 16G Master Control Node Intel, DC (1x5418Y(24c), 256GB RAM, 2x Intel E810 Dual Port NIC, SSD 2x 1.6TB SAS MU, PSU 1100W (DC))"],
+
     'Dell R750/R740': [
       "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1100W (DC)",
       "Dell 15G Standard Worker R750XL, 2x6330N (28c), 512GB RAM, 4x Intel E810 Dual Port, SSD 2x480GB 4x1.6TB SAS MU, PSU 1400W (AC)",
       "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  DC",
-      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC"
+      "Dell PowerEdge R740 XL 2x 26c 512GB vCompute/Worker /vDU/5GC/CU/HCI  Node -2x600GB SAS HDD4x1.6TB SSD(7.6TB)  storage  AC",
+      "Dell 16G Standard Worker R660, Intel, AC ( 2x 6438N(32c), 512GB RAM, 2x Intel E810 Quad port NIC, SSD 4x 1.6TB SAS MU, PSU 1100W(AC))",
+      "Dell 16G Standard Worker R660, Standard Worker Intel, DC 2x 6438N(32c), 512GB RAM, 2x Intel E810 Quad port NIC, SSD 4x 1.6TB SAS MU, PSU 1100W(DC)",
+    ],
+    'mTA': [
+      "2x 5418Y(24c), 512GB RAM, 1x Intel E810 Quad Port NIC OCP, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB SAS MU, PSU 1100W(AC)",
+      "2x 5418Y(24c), 512GB RAM, 1x Intel E810 Quad Port NIC OCP, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB SAS MU, PSU 1100W(DC)",
+    ],
+    'storage': [
+      "Dell 16G Standard Storage Node AC 1x6448Y(32c), 512GB RAM, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB NVMe MU, PSU 1100W(AC)",
+      "Dell 16G Standard Storage Node DC 1x6448Y(32c), 512GB RAM, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB NVMe MU, PSU 1100W(DC)",
     ],
     'Rack': [
       "HPE NFV/NON -NFV 42U Rack with 1P G2 Basic PDU - International",
@@ -196,7 +226,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
       "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xAC PSU",
       "S5232-F-ON AC ToR - Leaf Switch (2 per rack) 32x100G, 32xQSFP28, 2x10GbE SFP+, 2xDC PSU",
       "LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xAC 2xC13-C14",
-      "LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xDC"
+      "LEAF/SPINE/ToR ARISTA 7050X3, 32 x 100GbE QSFP+ & 2xSFP+ SWITCH, REAR TO FRONT AIR, 2xDC",
     ],
     'Management Switch': [
       "MANAGEMENT SWITCH - ARISTA 7010T, 48x RJ45 (100/1000), 4 x SFP+ (1/10GbE) SWITCH, REAR TO FRONT AIR",
