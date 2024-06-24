@@ -1,0 +1,30 @@
+.readme-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .readme-container h1, .readme-container h2, .readme-container p, .readme-container ul, .readme-container li {
+    margin-bottom: 15px;
+  }
+  
+  .readme-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .readme-container button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .readme-container button:hover {
+    background-color: #0056b3;
+  }
+  

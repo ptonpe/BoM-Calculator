@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HardwareData from './HardwareData';
+import ReadMe from './Readme';
 
 const App = () => {
   const [numDataCenters, setNumDataCenters] = useState(1);
@@ -299,7 +300,8 @@ const App = () => {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={
+        <Route exact path="/" element={<ReadMe />} />
+          <Route exact path="/main" element={
             <div>
               <div>
                 <label>Number of Data Centers:</label>
