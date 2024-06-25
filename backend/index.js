@@ -46,7 +46,9 @@ app.post('/calculate', (req, res) => {
         redundancyPercentage,
         cellsPerSector4G,
         cellsPerSectorFDD,
-        cellsPerSectorTDD
+        cellsPerSectorTDD,
+        storageServers,
+        mTAServers
       } = center;
 
 
@@ -68,27 +70,28 @@ app.post('/calculate', (req, res) => {
       
       const totalCNFs = parseInt(vCU) + parseInt(vDU) + parseInt(RUs);
       const totalNFs = parseInt(vDU2) + parseInt(adjustedVCUCPUP) + parseInt(PTP);
+      const doubledvCU = parseInt(vCU) * 2;
 
 
       // Calculating MTCIL based on totalNFs
       let MTCIL = 0;
-      if (totalNFs < 60) {
+      if (doubledvCU < 60) {
         MTCIL = 16;
-      } else if (totalNFs >= 60 && totalNFs < 120) {
+      } else if (doubledvCU >= 60 && doubledvCU < 120) {
         MTCIL = 32;
-      } else if (totalNFs >= 120 && totalNFs < 180) {
+      } else if (doubledvCU >= 120 && doubledvCU < 180) {
         MTCIL = 48;
-      } else if (totalNFs >= 180 && totalNFs < 240) {
+      } else if (doubledvCU >= 180 && doubledvCU < 240) {
         MTCIL = 64;
-      } else if (totalNFs >= 240 && totalNFs < 300) {
+      } else if (doubledvCU >= 240 && doubledvCU < 300) {
         MTCIL = 80;
-      } else if (totalNFs >= 300 && totalNFs < 360) {
+      } else if (doubledvCU >= 300 && doubledvCU < 360) {
         MTCIL = 96;
-      } else if (totalNFs >= 360 && totalNFs < 420) {
+      } else if (doubledvCU >= 360 && doubledvCU < 420) {
         MTCIL = 112;
-      } else if (totalNFs >= 420 && totalNFs < 480) {
+      } else if (doubledvCU >= 420 && doubledvCU < 480) {
         MTCIL = 128;
-      } else if (totalNFs >= 480) {
+      } else if (doubledvCU >= 480) {
         MTCIL = 144;
       }
 
@@ -163,7 +166,7 @@ app.post('/calculate', (req, res) => {
 
       const nosOfCuClusterServers = total4GServers + total5GFDDServers + total5GTDDServers + totalCUServers + totalCURedundancy;
 
-      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers;
+      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers + mTAServers + parseInt(storageServers);
       let nosOfRacks = 0;
       if (nosOfNodes == 0) {
         nosOfRacks = 0;
@@ -210,7 +213,9 @@ app.post('/calculate', (req, res) => {
         totalClusterPCORE,
         totalCUServers,
         totalCURedundancy,
-        additionalServers
+        additionalServers,
+        mTAServers,
+        storageServers
       };
     });
 

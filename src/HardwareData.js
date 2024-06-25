@@ -310,8 +310,50 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
         'UOM': hardware.uom,
       };
 
-      inputValues.forEach((_, i) => {
-        rowData[`Data Center ${i + 1}`] = hardware[`dataCenter${i + 1}`] || '';
+      inputValues.forEach((inputValue, i) => {
+        rowData[`Data Center ${i + 1}`] = hardware.category === 'Utility Server'
+          ? inputValue.nosOfUtilityServers * hardware.qty
+          : hardware.category === 'Automation Servers'
+          ? inputValue.nosOfAutomationClusterServers
+          : hardware.category === 'RAN Management'
+          ? inputValue.nosOfRanMgmtClusterServers
+          : hardware.category === 'CU Server'
+          ? inputValue.nosOfCuClusterServers
+          : hardware.itemType === 'Rack'
+          ? inputValue.nosOfRacks
+          : hardware.itemType === 'TOR Switch'
+          ? inputValue.nosOfRacks * 2
+          : hardware.itemType === 'Management Switch'
+          ? inputValue.nosOfRacks * hardware.qty
+          : hardware.itemType === 'Spine Switch'
+          ? (inputValue.nosOfRacks <= 1 ? 0 : 2)
+          : hardware.itemType === 'SDN(CCF/BCF) Server'
+          ? ((inputValue.nosOfRacks * hardware.qty) == 0 ? 0 : (inputValue.nosOfRacks * hardware.qty) <= 24 ? 2 : 4)
+          : hardware.itemType === 'Leaf to servers Breakout Cable 100G'
+          ? inputValue.totalNosOfServers * hardware.qty
+          : hardware.itemType === 'Leaf to Servers 100G SFP\'s'
+          ? inputValue.totalNosOfServers * hardware.qty
+          : hardware.itemType === 'Leaf to CCF/SDN Breakout Cable 40G'
+          ? ((inputValue.nosOfRacks * hardware.qty) == 0 ? 0 : (inputValue.nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+          : hardware.itemType === 'Leaf to CCF/SDN 40G SFPs'
+          ? ((inputValue.nosOfRacks * hardware.qty) == 0 ? 0 : (inputValue.nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+          : hardware.itemType === 'Leaf to Leaf SFPs 100G'
+          ? (inputValue.nosOfRacks * hardware.qty) * hardware.qty
+          : hardware.itemType === 'Leaf to Leaf Trunk Cable'
+          ? (inputValue.nosOfRacks * 2) * hardware.qty
+          : hardware.itemType === 'Leaf to Management SFP 100G'
+          ? (inputValue.nosOfRacks * hardware.qty) * hardware.qty
+          : hardware.itemType === 'Leaf to Management Trunk Cable'
+          ? (inputValue.nosOfRacks * 2) * hardware.qty
+          : hardware.itemType === 'Management to servers Ethernet cable'
+          ? inputValue.totalNosOfServers * hardware.qty
+          : hardware.itemType === 'Management to CCF/SDN Ethernet cable'
+          ? ((inputValue.nosOfRacks * hardware.qty) == 0 ? 0 : (inputValue.nosOfRacks * hardware.qty) <= 24 ? 2 : 4) * hardware.qty
+          : hardware.itemType === 'Leaf to Spine SFPs 100G'
+          ? (inputValue.nosOfRacks * hardware.qty) * (inputValue.nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+          : hardware.itemType === 'Leaf to Spine Trunk Cable'
+          ? (inputValue.nosOfRacks * 2) * (inputValue.nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+          : hardware[`dataCenter${i + 1}`] || '';
       });
 
       return rowData;
@@ -330,7 +372,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
   return (
     <div>
       <h2>Hardware Details</h2>
-      <Link to="/">
+      <Link to="/main">
         <button>Back to Main Page</button>
       </Link>
       <button className="export-button" onClick={exportToExcel}> Export to Excel </button>
