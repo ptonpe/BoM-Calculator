@@ -18,7 +18,7 @@ const App = () => {
       nosOfAutomationClusterServers: 0,
       nosOfRanMgmtClusterServers: 4,
       nosOfCuClusterServers: 0,
-      mTAServers: 0,
+      totalmTAServers: 0,
       storageServers: 0,
       nosOfRacks: 0,
       DU: 'SNO',
@@ -79,6 +79,9 @@ const App = () => {
       DU: 'Stretch Cluster',
       isFixed: 'Yes',
       additionalCluster: 'Select',
+      mTApc: 0,
+      mTAstor: 0,
+      totalmTAPCORE: 0,
     },
   ]);
   const [descriptionToItemNumber, setDescriptionToItemNumber] = useState({});
@@ -159,8 +162,11 @@ const App = () => {
           DU: 'Stretch Cluster',
           isFixed: 'Yes',
           additionalCluster: 'Select',
-          mTAServers: 0,
+          totalmTAServers: 0,
           storageServers: 0,
+          mTApc: 0,
+          mTAstor: 0,
+          totalmTAPCORE: 0,
         });
       }
       return newValues.slice(0, num);
@@ -171,17 +177,28 @@ const App = () => {
     const { name, value } = e.target;
     const newValues = [...inputValues];
     newValues[index][name] = value;
-    setInputValues(newValues);
 
     // If isCU is set to 1, set vCUCPUP to 0
     if (name === 'isCU' && value === '1') {
       newValues[index].vCUCPUP = 0;
+      fetchCalculatedValues(newValues);
     }
-    //setInputValues(newValues);
 
-    if (['nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD',
-      'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage',
-      'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'DU', 'sectorPerSite', 'additionalClusters', 'mTAServers', 'storageServers'].includes(name)) {
+    // If additionalCluster is set to 'mTA Cluster', set XApc to 0
+    if (name === 'additionalCluster' && value === 'mTA Cluster') {
+      newValues[index].XApc = 0;
+      newValues[index].XAstor = 0;
+      fetchCalculatedValues(newValues);
+    }
+
+    setInputValues(newValues);
+
+    if ([
+      'nosOfNodes', 'automationCluster', 'totalNosOfServers', 'XApc', 'XAstor', 'vCU', 'vDU', 'RUs', 'vDU2', 'vCUCPUP', 'PTP',
+      'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD',
+      'plannedFDDCard', 'plannedTDDCard', 'isCU', 'isCURedundant', 'redundancyPercentage', 'cellsPerSector4G', 'cellsPerSectorFDD',
+      'cellsPerSectorTDD', 'DU', 'sectorPerSite', 'additionalClusters', 'mTAServers', 'storageServers', 'mTApc', 'mTAstor'
+    ].includes(name)) {
       await fetchCalculatedValues(newValues);
     }
   };
@@ -303,9 +320,12 @@ const App = () => {
     isFixed: 'Fixed Values?',
     sectorPerSite: 'Sector Per Site',
     additionalCluster: 'Additional Cluster',
-    mTAServers: 'mTA Servers',
+    totalmTAServers: 'mTA Servers',
     storageServers: 'Storage Servers',
-    OS: 'OS/CaaS/PaaS'
+    OS: 'OS/CaaS/PaaS',
+    mTApc: 'XA (pc)',
+    mTAstor: 'XA (storage)',
+    totalmTAPCORE: 'Total mTA PCORE',
   };
 
   return (
@@ -360,7 +380,7 @@ const App = () => {
                   ))}
                   {Object.keys(inputValues[0]).filter(param => !['technology', 'platformType', 'automationCluster', 'nosOfNodes', 'vCU', 'vDU', 'RUs', 'totalCNFs', 'vDU2', 'vCUCPUP', 'PTP', 'totalNFs', 'nosOfSites', 'absMidhaulPer4G', 'absMidhaulPer5GFDD', 'absMidhaulPerTDD', 'pooling4G', 'pooling5GFDD', 'pooling5GTDD', 'absMidhaulThrough4G', 'absMidhaulThrough5GFDD', 'absMidhaulThrough5GTDD', 'perInstance4G', 'perInstance5GFDD',
                     'perInstance5GTDD', 'perInstance4GCard', 'perInstance5GFDDCard', 'perInstance5GTDDCard', 'plannedFDDCard', 'plannedTDDCard', 'total4GServers', 'total5GFDDServers', 'XApc', 'XAstor', 'diskCapacity', 'deltaRequirement', 'additionalServers',
-                    'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy', 'OS',
+                    'total5GTDDServers', 'isCU', 'masterPCORE', 'mtcilPCORE', 'totalvCUInstances', 'totalClusterPCORE', 'totalCUServers', 'isCURedundant', 'redundancyPercentage', 'totalCURedundancy', 'OS', 'mTApc', 'mTAstor', 'totalmTAPCORE',
                     'cellsPerSector4G', 'cellsPerSectorFDD', 'cellsPerSectorTDD', 'CRDL', 'MasterComponents', 'Sdaas', 'MTCIL', 'ODF', 'OSD', 'nCMS', 'totalNosOfPCORE', 'DU', 'sectorPerSite', 'isFixed', 'additionalCluster'].includes(param)).map((param, paramIndex) => (
                     <tr key={paramIndex}>
                       <td>{paramLabels[param]}</td>
@@ -688,12 +708,12 @@ const App = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {['OS', 'OSD', 'ODF', 'MTCIL', 'XApc', 'XAstor'].map((param, paramIndex) => (
+                      {['OS', 'OSD', 'ODF', 'MTCIL', 'mTApc', 'mTAstor', 'totalmTAPCORE'].map((param, paramIndex) => (
                         <tr key={paramIndex}>
                           <td>{paramLabels[param]}</td>
                           {inputValues.map((values, index) => (
                             <td key={index}>
-                              {['XApc', 'XAstor'].includes(param) ? (
+                              {['mTApc', 'mTAstor'].includes(param) ? (
                                 <input
                                   name={param}
                                   value={values[param]}
@@ -723,8 +743,6 @@ const App = () => {
       </div>
     </Router>
   );
-  
-  
 };
 
 export default App;

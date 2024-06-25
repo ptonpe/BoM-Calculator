@@ -353,6 +353,10 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
           ? (inputValue.nosOfRacks * hardware.qty) * (inputValue.nosOfRacks <= 1 ? 0 : 2) * hardware.qty
           : hardware.itemType === 'Leaf to Spine Trunk Cable'
           ? (inputValue.nosOfRacks * 2) * (inputValue.nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+          : hardware.itemType === 'mTA'
+          ? (inputValues[i].totalmTAServers)
+          : hardware.itemType === 'Storage'
+          ? (inputValues[i].storageServers)
           : hardware[`dataCenter${i + 1}`] || '';
       });
 
@@ -495,6 +499,10 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
                           ? (inputValues[i].nosOfRacks * hardware.qty) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
                           : hardware.itemType === 'Leaf to Spine Trunk Cable'
                           ? (inputValues[i].nosOfRacks * 2) * (inputValues[i].nosOfRacks <= 1 ? 0 : 2) * hardware.qty
+                          : hardware.itemType === 'mTA'
+                          ? (inputValues[i].totalmTAServers)
+                          : hardware.itemType === 'Storage'
+                          ? (inputValues[i].storageServers)
                           : hardware[`dataCenter${i + 1}`] || ''
                       }
                       className="short-text-field"

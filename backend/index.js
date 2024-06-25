@@ -48,7 +48,10 @@ app.post('/calculate', (req, res) => {
         cellsPerSectorFDD,
         cellsPerSectorTDD,
         storageServers,
-        mTAServers
+        mTAServers,
+        mTApc,
+        mTAstor,
+        OS,
       } = center;
 
 
@@ -166,7 +169,10 @@ app.post('/calculate', (req, res) => {
 
       const nosOfCuClusterServers = total4GServers + total5GFDDServers + total5GTDDServers + totalCUServers + totalCURedundancy;
 
-      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers + mTAServers + parseInt(storageServers);
+      const totalmTAPCORE = OS + OSD + ODF + MTCIL + parseInt(mTApc);
+      const totalmTAServers = Math.ceil(totalmTAPCORE / 56);
+
+      const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers + totalmTAServers + parseInt(storageServers);
       let nosOfRacks = 0;
       if (nosOfNodes == 0) {
         nosOfRacks = 0;
@@ -215,7 +221,9 @@ app.post('/calculate', (req, res) => {
         totalCURedundancy,
         additionalServers,
         mTAServers,
-        storageServers
+        storageServers,
+        totalmTAPCORE,
+        totalmTAServers
       };
     });
 
