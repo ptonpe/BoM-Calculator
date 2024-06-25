@@ -40,7 +40,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
     },
     {
       category: 'Storage Server',
-      itemType: 'storage',
+      itemType: 'Storage',
       itemDescription: '',
       skuNo: '',
       qty: 1,
