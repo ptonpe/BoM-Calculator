@@ -178,9 +178,10 @@ const App = () => {
     const newValues = [...inputValues];
     newValues[index][name] = value;
 
-    // If isCU is set to 1, set vCUCPUP to 0
+    // If isCU is set to 1, set vCUCPUP to 0 and MTCIL to 16
     if (name === 'isCU' && value === '1') {
       newValues[index].vCUCPUP = 0;
+      newValues[index].MTCIL = 16;
       fetchCalculatedValues(newValues);
     }
 
@@ -497,7 +498,7 @@ const App = () => {
                                 name={param}
                                 value={values[param]}
                                 onChange={(e) => handleChange(index, e)}
-                                disabled={(values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')) || (param === 'vCUCPUP' && values.isCU === '1')}
+                                disabled={(values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')) || (param === 'vCUCPUP' && values.isCU === '1') || (param === 'MTCIL' && values.isCU === '1')}
                               />
                             )}
                           </td>
@@ -702,13 +703,13 @@ const App = () => {
                     <thead>
                       <tr>
                         <th>Parameters</th>
-                        {inputValues.map((_, index) => (
+                        {inputValues.map((values, index) => (
                           <th key={index}>Data Center {index + 1}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
-                      {['OS', 'OSD', 'ODF', 'MTCIL', 'mTApc', 'mTAstor', 'totalmTAPCORE'].map((param, paramIndex) => (
+                      {['OS', 'OSD', 'ODF', 'MTCIL', 'mTApc', 'mTAstor', 'totalmTAPCORE', 'totalmTAServers'].map((param, paramIndex) => (
                         <tr key={paramIndex}>
                           <td>{paramLabels[param]}</td>
                           {inputValues.map((values, index) => (
@@ -718,12 +719,14 @@ const App = () => {
                                   name={param}
                                   value={values[param]}
                                   onChange={(e) => handleChange(index, e)}
+                                  disabled={values.additionalCluster !== 'mTA Cluster'}
                                 />
                               ) : (
                                 <input
                                   name={param}
-                                  value={values[param]}
-                                  readOnly
+                                  value={values.additionalCluster !== 'mTA Cluster' ? 0 : values[param]}
+                                  disabled={values.additionalCluster !== 'mTA Cluster'}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               )}
                             </td>
