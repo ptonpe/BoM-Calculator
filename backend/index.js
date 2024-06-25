@@ -170,7 +170,7 @@ app.post('/calculate', (req, res) => {
       const nosOfCuClusterServers = total4GServers + total5GFDDServers + total5GTDDServers + totalCUServers + totalCURedundancy;
 
       const totalmTAPCORE = OS + OSD + ODF + MTCIL + parseInt(mTApc);
-      const totalmTAServers = Math.ceil(totalmTAPCORE / 56);
+      const totalmTAServers = Math.ceil(totalmTAPCORE / 48);
 
       const totalNosOfServers = nosOfUtilityServers + nosOfAutomationClusterServers + nosOfRanMgmtClusterServers + nosOfCuClusterServers + totalmTAServers + parseInt(storageServers);
       let nosOfRacks = 0;
