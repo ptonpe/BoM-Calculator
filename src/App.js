@@ -356,24 +356,24 @@ const App = () => {
                       {inputValues.map((values, index) => (
                         <td key={index}>
                           {param === 'technology' ? (
-                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                               <option value="4G">4G</option>
                               <option value="5GSA">5GSA</option>
                               <option value="5GNSA">5GNSA</option>
                             </select>
                           ) : param === 'platformType' ? (
-                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                               <option value="RHOCP">RHOCP</option>
                               <option value="MWP">MWP</option>
                               <option value="VMWARE">VMWARE</option>
                             </select>
                           ) : param === 'automationCluster' ? (
-                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                            <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                               <option value="0">0</option>
                               <option value="1">1</option>
                             </select>
                           ) : (
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                           )}
                         </td>
                       ))}
@@ -392,19 +392,22 @@ const App = () => {
                               name={param}
                               value={values[param]}
                               onChange={(e) => handleChange(index, e)}
-                              disabled={values.additionalCluster === 'mTA Cluster'}
+                              className={values.additionalCluster === 'mTA Cluster' ? 'input-required' : 'input-read-only'}
+                              disabled={values.additionalCluster !== 'mTA Cluster'}
                             />
                           ) : param === 'storageServers' ? (
                               <input
                               name={param}
                               value={values[param]}
                               onChange={(e) => handleChange(index, e)}
+                              className="input-required"
                             />
                             ) : (
                               <input
                                 name={param}
                                 value={values[param]}
                                 onChange={(e) => handleChange(index, e)}
+                                className="input-read-only"
                                 readOnly
                               />
                             )}
@@ -432,7 +435,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                           </td>
                         ))}
                       </tr>
@@ -441,7 +444,7 @@ const App = () => {
                       <td>{paramLabels['totalCNFs']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="totalCNFs" value={values.totalCNFs} readOnly />
+                          <input name="totalCNFs" value={values.totalCNFs} readOnly className="input-read-only" />
                         </td>
                       ))}
                     </tr>
@@ -463,7 +466,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} disabled={values.additionalCluster === 'mTA Cluster'} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className={values.additionalCluster === 'mTA Cluster' ? 'input-required' : 'input-read-only'} disabled={values.additionalCluster !== 'mTA Cluster'} />
                           </td>
                         ))}
                       </tr>
@@ -489,7 +492,7 @@ const App = () => {
                         {inputValues.map((values, index) => (
                           <td key={index}>
                             {param === 'DU' ? (
-                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} >
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                                 <option value="SNO">SNO</option>
                                 <option value="Stretch Cluster">Stretch Cluster</option>
                               </select>
@@ -498,6 +501,7 @@ const App = () => {
                                 name={param}
                                 value={values[param]}
                                 onChange={(e) => handleChange(index, e)}
+                                className={((values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')) || (param === 'vCUCPUP' && values.isCU === '1') || (param === 'MTCIL' && values.isCU === '1')) ? 'input-read-only' : 'input-required'}
                                 disabled={(values.DU === 'SNO' && (param === 'vDU2' || param === 'PTP')) || (param === 'vCUCPUP' && values.isCU === '1') || (param === 'MTCIL' && values.isCU === '1')}
                               />
                             )}
@@ -509,7 +513,7 @@ const App = () => {
                       <td>{paramLabels['totalNFs']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="totalNFs" value={values.totalNFs} readOnly />
+                          <input name="totalNFs" value={values.totalNFs} readOnly className="input-read-only" />
                         </td>
                       ))}
                     </tr>
@@ -534,12 +538,13 @@ const App = () => {
                         {inputValues.map((values, index) => (
                           <td key={index}>
                             {param === 'isFixed' ? (
-                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
                             ) : (
                               < input name={param} value={values[param]} onChange={(e) => handleChange(index, e)}
+                                className={values.isFixed === 'Yes' && ['CRDL', 'MasterComponents', 'Sdaas', 'ODF', 'OSD'].includes(param) ? 'input-read-only' : 'input-required'}
                                 readOnly={values.isFixed === 'Yes' && ['CRDL', 'MasterComponents', 'Sdaas', 'ODF', 'OSD'].includes(param)} />
                             )}
                           </td>
@@ -567,7 +572,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                           </td>
                         ))}
                       </tr>
@@ -577,7 +582,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} readOnly />
+                            <input name={param} value={values[param]} readOnly className="input-read-only" />
                           </td>
                         ))}
                       </tr>
@@ -586,7 +591,7 @@ const App = () => {
                       <td className='bold-input'>{paramLabels['total4GServers']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="total4GServers" value={values.total4GServers} onChange={(e) => handleChange(index, e)} />
+                          <input name="total4GServers" value={values.total4GServers} onChange={(e) => handleChange(index, e)} className="input-required" />
                         </td>
                       ))}
                     </tr>
@@ -597,7 +602,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                           </td>
                         ))}
                       </tr>
@@ -607,7 +612,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} readOnly />
+                            <input name={param} value={values[param]} readOnly className="input-read-only" />
                           </td>
                         ))}
                       </tr>
@@ -616,7 +621,7 @@ const App = () => {
                       <td>{paramLabels['plannedFDDCard']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="plannedFDDCard" value={values.plannedFDDCard} onChange={(e) => handleChange(index, e)} />
+                          <input name="plannedFDDCard" value={values.plannedFDDCard} onChange={(e) => handleChange(index, e)} className="input-required" />
                         </td>
                       ))}
                     </tr>
@@ -624,7 +629,7 @@ const App = () => {
                       <td className='bold-input'>{paramLabels['total5GFDDServers']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="total5GFDDServers" value={values.total5GFDDServers} onChange={(e) => handleChange(index, e)} />
+                          <input name="total5GFDDServers" value={values.total5GFDDServers} onChange={(e) => handleChange(index, e)} className="input-required" />
                         </td>
                       ))}
                     </tr>
@@ -635,7 +640,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                            <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                           </td>
                         ))}
                       </tr>
@@ -645,7 +650,7 @@ const App = () => {
                         <td>{paramLabels[param]}</td>
                         {inputValues.map((values, index) => (
                           <td key={index}>
-                            <input name={param} value={values[param]} readOnly />
+                            <input name={param} value={values[param]} readOnly className="input-read-only" />
                           </td>
                         ))}
                       </tr>
@@ -654,7 +659,7 @@ const App = () => {
                       <td>{paramLabels['plannedTDDCard']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="plannedTDDCard" value={values.plannedTDDCard} onChange={(e) => handleChange(index, e)} />
+                          <input name="plannedTDDCard" value={values.plannedTDDCard} onChange={(e) => handleChange(index, e)} className="input-required" />
                         </td>
                       ))}
                     </tr>
@@ -662,7 +667,7 @@ const App = () => {
                       <td className='bold-input'>{paramLabels['total5GTDDServers']}</td>
                       {inputValues.map((values, index) => (
                         <td key={index}>
-                          <input name="total5GTDDServers" value={values.total5GTDDServers} onChange={(e) => handleChange(index, e)} />
+                          <input name="total5GTDDServers" value={values.total5GTDDServers} onChange={(e) => handleChange(index, e)} className="input-required" />
                         </td>
                       ))}
                     </tr>
@@ -674,18 +679,18 @@ const App = () => {
                         {inputValues.map((values, index) => (
                           <td key={index}>
                             {param === 'isCU' || param === 'isCURedundant' ? (
-                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                               </select>
                             ) : param === 'additionalCluster' ? (
-                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)}>
+                              <select name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required">
                                 <option value="Storage Cluster">Storage Cluster</option>
                                 <option value="mTA Cluster">mTA Cluster</option>
                                 <option value="None">None</option>
                               </select>
                             ) : (
-                              <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} />
+                              <input name={param} value={values[param]} onChange={(e) => handleChange(index, e)} className="input-required" />
                             )}
                           </td>
                         ))}
@@ -719,6 +724,7 @@ const App = () => {
                                   name={param}
                                   value={values[param]}
                                   onChange={(e) => handleChange(index, e)}
+                                  className={values.additionalCluster === 'mTA Cluster' ? 'input-required' : 'input-read-only'}
                                   disabled={values.additionalCluster !== 'mTA Cluster'}
                                 />
                               ) : (
@@ -727,6 +733,7 @@ const App = () => {
                                   value={values.additionalCluster !== 'mTA Cluster' ? 0 : values[param]}
                                   disabled={values.additionalCluster !== 'mTA Cluster'}
                                   onChange={(e) => handleChange(index, e)}
+                                  className={values.additionalCluster === 'mTA Cluster' ? 'input-required' : 'input-read-only'}
                                 />
                               )}
                             </td>

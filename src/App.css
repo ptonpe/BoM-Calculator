@@ -139,3 +139,9 @@ input[type="number"] {
 .export-button {
   margin-left: 10px;
 }
+
+.input-required {
+  background-color: #ffffe0; /* Light yellow background */
+}
+
+
