@@ -212,7 +212,7 @@ const HardwareData = ({ inputValues, descriptionToItemNumber }) => {
       "2x 5418Y(24c), 512GB RAM, 1x Intel E810 Quad Port NIC OCP, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB SAS MU, PSU 1100W(AC)",
       "2x 5418Y(24c), 512GB RAM, 1x Intel E810 Quad Port NIC OCP, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB SAS MU, PSU 1100W(DC)",
     ],
-    'storage': [
+    'Storage': [
       "Dell 16G Standard Storage Node AC 1x6448Y(32c), 512GB RAM, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB NVMe MU, PSU 1100W(AC)",
       "Dell 16G Standard Storage Node DC 1x6448Y(32c), 512GB RAM, 2x Intel E810 Dual Port NIC, SSD 8x 3.2TB NVMe MU, PSU 1100W(DC)",
     ],
