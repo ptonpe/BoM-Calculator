@@ -75,21 +75,21 @@ app.post('/calculate', (req, res) => {
       if (totalNFs < 60) {
         MTCIL = 16;
       } else if (totalNFs >= 60 && totalNFs < 120) {
-        MTCIL = 32;
+        MTCIL = isCU === 0 ? 32 : 16;
       } else if (totalNFs >= 120 && totalNFs < 180) {
-        MTCIL = 48;
+        MTCIL = isCU === 0 ? 48 : 16;
       } else if (totalNFs >= 180 && totalNFs < 240) {
-        MTCIL = 64;
+        MTCIL = isCU === 0 ? 64 : 16;
       } else if (totalNFs >= 240 && totalNFs < 300) {
-        MTCIL = 80;
+        MTCIL = isCU === 0 ? 80 : 16;
       } else if (totalNFs >= 300 && totalNFs < 360) {
-        MTCIL = 96;
+        MTCIL = isCU === 0 ? 96 : 16;
       } else if (totalNFs >= 360 && totalNFs < 420) {
-        MTCIL = 112;
+        MTCIL = isCU === 0 ? 112 : 16;
       } else if (totalNFs >= 420 && totalNFs < 480) {
-        MTCIL = 128;
+        MTCIL = isCU === 0 ? 128 : 16;
       } else if (totalNFs >= 480) {
-        MTCIL = 144;
+        MTCIL = isCU === 0 ? 144 : 16;
       }
 
       // Calculate nCMS based on totalCNFs
